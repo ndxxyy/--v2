@@ -9,6 +9,7 @@
     "npm": ">=11.0.0"
   },
   "scripts": {
+    "build": "next build --webpack",
     "atlas:images": "node scripts/atlas/generate-images.mjs",
     "atlas:watermark:init": "node scripts/atlas/create-watermark-key.mjs",
     "atlas:watermark:visible:asset": "node scripts/atlas/create-visible-watermark-asset.mjs",
@@ -16,13 +17,17 @@
     "atlas:watermark:verify": "node scripts/atlas/verify-watermarks.mjs",
     "atlas:watermark:detect": "node scripts/atlas/verify-watermarks.mjs",
     "dev": "next dev",
-    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.20.1",
     "next": "16.2.10",
     "react": "19.2.7",
     "react-dom": "19.2.7"
@@ -36,6 +41,7 @@
     "eslint-config-next": "16.2.10",
     "sharp": "0.34.5",
     "tailwindcss": "4.3.2",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wrangler": "^4.110.0"
   }
 }

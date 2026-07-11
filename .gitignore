@@ -30,3 +30,11 @@ next-env.d.ts
 /content-assets/masters/**
 !/content-assets/masters/README.md
 
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
