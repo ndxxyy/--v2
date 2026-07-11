@@ -1,0 +1,93 @@
+# 图谱库明水印
+
+## 当前结果
+
+图谱库的明水印以已审核的全分辨率母版为准。程序不再给经络图合成或叠加明水印。
+
+| 范围 | 全分辨率资产 | 公开变体 | 明水印记录 | 实际来源 |
+| --- | ---: | ---: | --- | --- |
+| 严格经络图 `*-meridian/**` | 95 | 190 | `xqy-visible-mesh-v2`，`applied: true` | 用户提供的已加白色半透明网状“小钟岐医”水印 JPG |
+| 本草图 `herbs/wind-cold/*.jpg` | 17 | 34 | `source-visible-preserved-v1`，`applied: false` | 旧站干净源中已有标识的 JPG |
+| 九针图 `nine-needles-atlas.jpg` | 1 | 2 | `source-visible-preserved-v1`，`applied: false` | 旧站干净源中已有标识的 JPG |
+
+九针图在网站作品分类中仍属于经络类，但不属于 `*-meridian/**` 的 95 张严格经络图。最终共有 113 张全分辨率母版和 226 张公开 WebP；公开清单中的明水印统计为 `applied: true` 190 张、`applied: false` 36 张。
+
+`xqy-visible-mesh-v2` 在当前流程中是对用户交付水印样式和来源的记录，不代表生成器再次绘制水印。经络图清单同时记录 `provenance: "user-provided-master"`。程序不会改变用户来图中的字号、透明度、倾角、间距或排布，也不会叠加第二层水印。
+
+## 全分辨率母版导入
+
+用户提供的 95 张经络图位于：
+
+```text
+/Volumes/钟先生硬盘/02_设计资产与原始素材/版权与水印资质/针灸/素描经络/总览/jpg(水印)
+```
+
+旧站干净源保持只读：
+
+```text
+/Volumes/钟先生硬盘/小钟岐医个人独立站/public/images/works
+```
+
+导入命令：
+
+```text
+npm run atlas:watermark:visible:masters -- \
+  --incoming "/Volumes/钟先生硬盘/02_设计资产与原始素材/版权与水印资质/针灸/素描经络/总览/jpg(水印)" \
+  --clean-source "/Volumes/钟先生硬盘/小钟岐医个人独立站/public/images/works"
+```
+
+导入器执行以下审核：
+
+1. 将用户来图的中文文件名映射到网站的 14 个经络目录和英文资产名，包括 `局部穴7`、`局部穴位4.1`、`体体外经络循行` 等历史命名。
+2. 要求映射结果恰好覆盖 95 张经络图，且没有重复、缺失或多余资产。
+3. 对每张来图和对应干净经络源核对像素尺寸，并比较低分辨率灰度内容指纹；内容差异超过审核阈值即中止。
+4. 将通过审核的用户来图逐字节复制到 `content-assets/masters/works-watermarked`，复制后再次核对源/目标字节数和 SHA-256；不重新编码、不合成水印。
+5. 17 张本草和 1 张九针从干净源逐字节恢复，并核对预先登记的源文件 SHA-256，以移除此前误加的红色角标，同时保留原图已经烘焙的印章、底纹和元数据。
+6. 全部 113 张写入暂存目录并通过检查后，才原子替换正式母版目录。用户来图和旧站干净源均不修改。
+
+私有导入清单位于 `content-assets/masters/works-watermarked/.atlas-visible-masters.json`。它记录中文原文件名、目标资产 ID、内容相似度、源/目标 SHA-256、尺寸、来源类型和明水印描述，不得放入 `public`。
+
+## 公开图片生成
+
+公开图只能从已经审核并带有导入清单的 `works-watermarked` 生成：
+
+```text
+npm run atlas:images -- --source "content-assets/masters/works-watermarked"
+npm run atlas:watermark:verify
+```
+
+生成器先核对 113 张母版与私有导入清单的路径、哈希和明水印描述，再等比缩放并嵌入 `xqy-dct-qim-v2` 盲水印，最后编码为 WebP。它不会在任何公开变体上新增或重绘明水印。
+
+公开输出为：
+
+- 113 张目录缩略图，位于 `public/images/atlas/thumbnails/**`。
+- 113 张详情预览图，位于 `public/images/atlas/previews/**`。
+- 生成清单 `src/data/atlas-image-assets.generated.ts`，记录最终路径、尺寸、字节数、SHA-256、明水印来源和盲水印置信度。
+
+公开目录和清单也采用暂存后整体替换；任一母版、盲水印或编码结果验证失败都会停止发布并保留上一版。
+
+## 最终验收
+
+2026-07-11 最终结果已确认：
+
+- 95 张经络水印来图全部完成文件名映射、尺寸检查和内容相似度验证。
+- 95 张经络母版均与对应用户来图逐字节一致。
+- 17 张本草和 1 张九针均与登记的干净源逐字节一致，未保留此前误加的红色角标。
+- 全分辨率母版总数为 113；经络 95、本草/九针 18。
+- 公开 WebP 验证通过 `226/226`。
+- 明水印清单统计为 `applied: true` 190、`applied: false` 36。
+- 226 张公开图片均通过 `xqy-dct-qim-v2` 盲水印、路径、尺寸、字节数和最终文件 SHA-256 验证。
+
+替换前版本保存在：
+
+```text
+content-assets/backups/20260711-before-user-provided-meridians
+```
+
+该备份用于回滚和审计，不应复制到 `public`。
+
+## 边界
+
+明水印用于直观版权提示，可以被裁切、修图或 AI 重绘移除，不能单独作为密码学归因证据。归因仍依赖盲水印、私钥、追加式登记表、导入清单、干净源图及创作记录。
+
+公开图片沿用原 URL；部署替换后应清理 CDN 或图片缓存，避免旧红角标版继续被缓存。

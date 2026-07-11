@@ -1,0 +1,112 @@
+@theme {
+  --font-display: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif CJK SC", "SimSun", serif;
+  --font-body: "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", system-ui, sans-serif;
+
+  --color-porcelain-50: oklch(0.975 0.01 218);
+  --color-porcelain-100: oklch(0.94 0.018 218);
+  --color-porcelain-300: oklch(0.78 0.035 218);
+  --color-porcelain-500: oklch(0.6 0.06 218);
+  --color-porcelain-700: oklch(0.45 0.065 218);
+  --color-porcelain-800: oklch(0.36 0.055 218);
+  --color-porcelain-900: oklch(0.29 0.045 218);
+  --color-porcelain-950: oklch(0.22 0.035 218);
+
+  --color-celadon-50: oklch(0.98 0.008 165);
+  --color-celadon-100: oklch(0.93 0.024 165);
+  --color-celadon-300: oklch(0.78 0.045 165);
+  --color-celadon-500: oklch(0.62 0.055 165);
+  --color-celadon-700: oklch(0.45 0.05 165);
+  --color-celadon-800: oklch(0.36 0.04 165);
+  --color-celadon-900: oklch(0.28 0.03 165);
+
+  --color-ink-50: oklch(0.98 0.002 165);
+  --color-ink-100: oklch(0.94 0.004 165);
+  --color-ink-300: oklch(0.76 0.009 165);
+  --color-ink-500: oklch(0.55 0.014 165);
+  --color-ink-700: oklch(0.38 0.017 165);
+  --color-ink-900: oklch(0.24 0.016 165);
+  --color-ink-950: oklch(0.17 0.014 165);
+
+  --color-xuan-50: oklch(0.985 0.004 150);
+  --color-xuan-100: oklch(0.97 0.006 150);
+  --color-xuan-200: oklch(0.93 0.008 150);
+
+  --color-cinnabar-100: oklch(0.93 0.035 29);
+  --color-cinnabar-300: oklch(0.75 0.1 29);
+  --color-cinnabar-500: oklch(0.59 0.18 29);
+  --color-cinnabar-700: oklch(0.45 0.15 29);
+  --color-cinnabar-800: oklch(0.36 0.12 29);
+  --color-cinnabar-900: oklch(0.28 0.08 29);
+
+  --color-page: var(--color-xuan-50);
+  --color-surface: white;
+  --color-surface-muted: var(--color-xuan-100);
+  --color-foreground: var(--color-ink-950);
+  --color-muted: var(--color-ink-700);
+  --color-rule: var(--color-ink-300);
+  --color-primary: var(--color-porcelain-900);
+  --color-primary-hover: var(--color-porcelain-800);
+  --color-accent: var(--color-celadon-700);
+  --color-focus: var(--color-porcelain-700);
+  --color-critical: var(--color-cinnabar-700);
+
+  --text-display: clamp(2.75rem, 6vw, 5.5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: 0.04em;
+  --text-heading-1: clamp(2.25rem, 4.4vw, 3.5rem);
+  --text-heading-1--line-height: 1.12;
+  --text-heading-1--letter-spacing: 0.03em;
+  --text-heading-2: clamp(1.75rem, 3vw, 2.25rem);
+  --text-heading-2--line-height: 1.25;
+  --text-heading-2--letter-spacing: 0.04em;
+  --text-heading-3: clamp(1.25rem, 2vw, 1.5rem);
+  --text-heading-3--line-height: 1.35;
+  --text-heading-3--letter-spacing: 0.04em;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.75;
+  --text-body: 1rem;
+  --text-body--line-height: 1.75;
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.65;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.08em;
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1.6;
+
+  --radius-hair: 2px;
+  --radius-soft: 4px;
+  --radius-dialog: 8px;
+
+  --spacing-page: clamp(1.125rem, 4vw, 3rem);
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+  --spacing-cluster: clamp(1.5rem, 4vw, 3rem);
+
+  --container-catalog: 80rem;
+  --container-reading: 72ch;
+
+  --aspect-work-portrait: 3 / 4;
+  --aspect-work-landscape: 4 / 3;
+  --aspect-work-square: 1 / 1;
+
+  --shadow-dialog: 0 8px 24px color-mix(in oklch, var(--color-ink-950) 16%, transparent);
+  --ease-catalog: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --duration-fast: 160ms;
+  --duration-dialog: 240ms;
+  --grid-columns-mobile: 4;
+  --grid-columns-tablet: 8;
+  --grid-columns-desktop: 12;
+  --grid-gutter-mobile: 1rem;
+  --grid-gutter-tablet: 1.25rem;
+  --grid-gutter-desktop: 1.5rem;
+  --z-base: 0;
+  --z-sticky: 20;
+  --z-popover: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+  --z-tooltip: 70;
+}

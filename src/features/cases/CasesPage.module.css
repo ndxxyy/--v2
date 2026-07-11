@@ -1,0 +1,529 @@
+.page,
+.detailPage {
+  overflow: clip;
+}
+
+.hero,
+.detailHeader {
+  border-bottom: 1px solid var(--color-porcelain-700);
+  background: var(--color-porcelain-950);
+  color: var(--color-xuan-50);
+}
+
+.heroInner,
+.detailHeaderInner,
+.container {
+  width: min(100% - (var(--spacing-page) * 2), var(--container-catalog));
+  margin-inline: auto;
+}
+
+.heroInner {
+  display: grid;
+  padding-block: clamp(4rem, 10vw, 8rem);
+}
+
+.heroIntro {
+  max-width: 48rem;
+}
+
+.heroTitle,
+.detailTitle {
+  color: var(--color-xuan-50);
+  font-size: var(--text-heading-1);
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+  overflow-wrap: anywhere;
+}
+
+.heroDescription,
+.detailSummary {
+  max-width: 44rem;
+  margin-top: 1.5rem;
+  color: var(--color-porcelain-100);
+  font-size: var(--text-body-lg);
+}
+
+.heroPrinciple {
+  margin-top: 3rem;
+  border-top: 1px solid var(--color-porcelain-700);
+  padding-top: 1.5rem;
+}
+
+.heroPrincipleTitle {
+  color: var(--color-xuan-50);
+  font-family: var(--font-display);
+  font-size: var(--text-heading-3);
+}
+
+.heroPrincipleDescription {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  color: var(--color-porcelain-100);
+  font-size: var(--text-body-sm);
+}
+
+.directory,
+.taxonomy {
+  padding-block: var(--spacing-section);
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+
+.sectionTitle {
+  font-size: var(--text-heading-1);
+  line-height: 1.12;
+  letter-spacing: 0.03em;
+}
+
+.sectionDescription {
+  max-width: 44rem;
+  color: var(--color-muted);
+}
+
+.filterBar {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.filterLink {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-hair);
+  padding: 0.55rem 0.9rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition:
+    border-color var(--duration-fast) var(--ease-catalog),
+    background-color var(--duration-fast) var(--ease-catalog),
+    color var(--duration-fast) var(--ease-catalog);
+}
+
+.filterLink:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary-hover);
+}
+
+.filterLink[aria-current="page"] {
+  border-color: var(--color-porcelain-700);
+  background: var(--color-porcelain-100);
+  color: var(--color-porcelain-950);
+  font-weight: 600;
+}
+
+.filterStatus {
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.caseIndex {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.caseEntry {
+  display: grid;
+  gap: 1rem;
+  border-top: 1px solid var(--color-rule);
+  padding-block: 1.75rem;
+}
+
+.caseMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  color: var(--color-muted);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.caseTitle,
+.taxonomyName,
+.policyItemTitle,
+.relatedTitle {
+  font-size: var(--text-heading-3);
+}
+
+.caseSummary {
+  max-width: 68ch;
+  margin-top: 0.75rem;
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.caseAction {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.emptyNotice {
+  max-width: 62rem;
+}
+
+.noticeFollowup {
+  margin-top: 0.75rem;
+}
+
+.linkCluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin-top: 1rem;
+}
+
+.linkCluster a,
+.relatedLinks a {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.policy {
+  border-block: 1px solid var(--color-celadon-300);
+  padding-block: var(--spacing-section);
+  background: var(--color-celadon-100);
+}
+
+.policyLayout {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.policyIntro {
+  align-self: start;
+}
+
+.policyList {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-celadon-500);
+  list-style: none;
+}
+
+.policyItem {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-celadon-500);
+  padding-block: 1.5rem;
+}
+
+.policyNumber {
+  color: var(--color-celadon-900);
+  font-family: var(--font-display);
+  font-size: var(--text-body-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.policyItemDescription {
+  max-width: 56ch;
+  margin-top: 0.5rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.medicalBoundary {
+  max-width: 68ch;
+  border-top: 1px solid var(--color-celadon-500);
+  padding-top: 1.5rem;
+  color: var(--color-ink-900);
+  font-size: var(--text-body-lg);
+}
+
+.taxonomyList {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-rule);
+  list-style: none;
+}
+
+.taxonomyItem {
+  display: grid;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--color-rule);
+  padding-block: 1.5rem;
+}
+
+.taxonomySummary {
+  max-width: 54ch;
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.detailHeaderInner {
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.backLink {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-xuan-50);
+  text-decoration-color: var(--color-porcelain-300);
+}
+
+.backLink:hover {
+  color: var(--color-porcelain-100);
+}
+
+.detailMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 2rem;
+  color: var(--color-porcelain-100);
+  font-size: var(--text-caption);
+}
+
+.detailMeta div {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.detailMeta dt {
+  font-weight: 600;
+}
+
+.detailTitle {
+  max-width: 20ch;
+  margin-top: 1rem;
+}
+
+.detailLayout {
+  display: grid;
+  gap: clamp(3rem, 7vw, 6rem);
+  padding-block: var(--spacing-section);
+}
+
+.caseArticle,
+.prose {
+  min-width: 0;
+}
+
+.prose {
+  max-width: var(--container-reading);
+  font-size: var(--text-body-lg);
+}
+
+.prose > * + * {
+  margin-top: 1.5rem;
+}
+
+.prose h2 {
+  margin-top: 3.5rem;
+  font-size: var(--text-heading-2);
+}
+
+.prose h3 {
+  margin-top: 2.5rem;
+  font-size: var(--text-heading-3);
+}
+
+.prose ol,
+.prose ul {
+  padding-inline-start: 1.5rem;
+}
+
+.prose li + li {
+  margin-top: 0.5rem;
+}
+
+.detailAside {
+  min-width: 0;
+}
+
+.related {
+  margin-top: 2rem;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 1.5rem;
+}
+
+.relatedLinks {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.relatedLinks li + li {
+  border-top: 1px solid var(--color-rule);
+}
+
+@media (min-width: 48rem) {
+  .heroInner {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-tablet);
+  }
+
+  .heroIntro {
+    grid-column: span 5;
+  }
+
+  .heroPrinciple {
+    grid-column: 6 / -1;
+    margin-top: 0;
+    border-top: 0;
+    border-left: 1px solid var(--color-porcelain-700);
+    padding-top: 0;
+    padding-left: 2rem;
+  }
+
+  .sectionHeader {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+    column-gap: var(--grid-gutter-tablet);
+  }
+
+  .filterBar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+
+  .filterStatus {
+    text-align: right;
+  }
+
+  .caseEntry {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-tablet);
+    padding-block: 2rem;
+  }
+
+  .caseMeta {
+    grid-column: span 2;
+    align-content: start;
+  }
+
+  .caseText {
+    grid-column: span 6;
+  }
+
+  .policyLayout {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-tablet);
+  }
+
+  .policyIntro {
+    grid-column: span 3;
+  }
+
+  .policyList {
+    grid-column: span 5;
+  }
+
+  .medicalBoundary {
+    grid-column: 4 / -1;
+  }
+
+  .taxonomyItem {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
+    column-gap: var(--grid-gutter-tablet);
+  }
+}
+
+@media (min-width: 64rem) {
+  .detailLayout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-desktop);
+  }
+
+  .caseArticle {
+    grid-column: span 8;
+  }
+
+  .detailAside {
+    grid-column: 9 / -1;
+  }
+}
+
+@media (min-width: 80rem) {
+  .heroInner {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-desktop);
+  }
+
+  .heroIntro {
+    grid-column: span 7;
+  }
+
+  .heroPrinciple {
+    grid-column: 9 / -1;
+  }
+
+  .sectionHeader {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-desktop);
+  }
+
+  .sectionHeader .sectionTitle {
+    grid-column: span 4;
+  }
+
+  .sectionHeader .sectionDescription {
+    grid-column: 6 / span 6;
+  }
+
+  .caseEntry {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-desktop);
+  }
+
+  .caseMeta {
+    grid-column: span 3;
+  }
+
+  .caseText {
+    grid-column: 4 / span 8;
+  }
+
+  .policyLayout {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-desktop);
+  }
+
+  .policyIntro {
+    grid-column: span 4;
+  }
+
+  .policyList {
+    grid-column: 6 / span 7;
+  }
+
+  .medicalBoundary {
+    grid-column: 6 / span 7;
+  }
+
+  .taxonomyItem {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--grid-gutter-desktop);
+  }
+
+  .taxonomyName {
+    grid-column: span 4;
+  }
+
+  .taxonomySummary {
+    grid-column: 6 / span 6;
+  }
+}
+
+@media (max-width: 29.999rem) {
+  .linkCluster {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
