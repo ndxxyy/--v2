@@ -1,0 +1,492 @@
+import type {
+  LocalizedText,
+  OptionalLocalizedText,
+  Work,
+  WorkCategoryKey,
+} from "@/domain/content";
+
+interface WorkDefinition {
+  readonly id: string;
+  readonly slug: string;
+  readonly code: string;
+  readonly category: WorkCategoryKey;
+  readonly title: LocalizedText;
+  readonly summary: OptionalLocalizedText;
+  readonly featured?: boolean;
+}
+
+const hiddenRights = {
+  ownership: "unverified",
+  copyrightStatus: "hidden",
+} as const;
+
+function defineWork(definition: WorkDefinition): Work {
+  return {
+    ...definition,
+    imageGroupId: `images-${definition.id}`,
+    tags: [
+      definition.title["zh-CN"],
+      definition.title["zh-Hant"],
+      definition.title.en,
+      definition.code,
+    ],
+    featured: definition.featured ?? false,
+    rights: hiddenRights,
+    licenseScenarioIds: [],
+    publication: { status: "published" },
+  };
+}
+
+export const works: readonly Work[] = [
+  defineWork({
+    id: "work-001",
+    slug: "lung-meridian-atlas",
+    code: "XQY-MER-LU-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "手太阴肺经图组",
+      "zh-Hant": "手太陰肺經圖組",
+      en: "Hand Taiyin Lung Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "围绕手太阴肺经的体外循行、体内循行与上肢局部穴位分层呈现。",
+      "zh-Hant": "圍繞手太陰肺經的體外循行、體內循行與上肢局部穴位分層呈現。",
+      en: "A layered view of the external and internal pathways of the Lung meridian, with local points of the upper limb.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-002",
+    slug: "large-intestine-meridian-atlas",
+    code: "XQY-MER-LI-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "手阳明大肠经图组",
+      "zh-Hant": "手陽明大腸經圖組",
+      en: "Hand Yangming Large Intestine Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "围绕手阳明大肠经的体表循行、体内联系与多段局部穴位分层呈现。",
+      "zh-Hant": "圍繞手陽明大腸經的體表循行、體內聯繫與多段局部穴位分層呈現。",
+      en: "The surface pathway, internal connections, and regional point groups of the Large Intestine meridian.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-003",
+    slug: "stomach-meridian-atlas",
+    code: "XQY-MER-ST-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "足阳明胃经图组",
+      "zh-Hant": "足陽明胃經圖組",
+      en: "Foot Yangming Stomach Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "梳理足阳明胃经的体表循行、体内联系与头面、胸腹、下肢局部穴位。",
+      "zh-Hant": "梳理足陽明胃經的體表循行、體內聯繫與頭面、胸腹、下肢局部穴位。",
+      en: "The Stomach meridian across its surface pathway, internal connections, and local point regions of the head, trunk, and lower limb.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-004",
+    slug: "spleen-meridian-atlas",
+    code: "XQY-MER-SP-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "足太阴脾经图组",
+      "zh-Hant": "足太陰脾經圖組",
+      en: "Foot Taiyin Spleen Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "整理足太阴脾经的体外循行、体内联系与足部、下肢、胸腹局部穴位。",
+      "zh-Hant": "整理足太陰脾經的體外循行、體內聯繫與足部、下肢、胸腹局部穴位。",
+      en: "The external pathway, internal connections, and local point regions of the Spleen meridian from foot to trunk.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-005",
+    slug: "heart-meridian-atlas",
+    code: "XQY-MER-HT-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "手少阴心经图组",
+      "zh-Hant": "手少陰心經圖組",
+      en: "Hand Shaoyin Heart Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "呈现手少阴心经的体表循行、体内联系与腋臂、肘腕、掌指局部穴位。",
+      "zh-Hant": "呈現手少陰心經的體表循行、體內聯繫與腋臂、肘腕、掌指局部穴位。",
+      en: "The surface pathway, internal connections, and local point regions of the Heart meridian along the upper limb.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-006",
+    slug: "small-intestine-meridian-atlas",
+    code: "XQY-MER-SI-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "手太阳小肠经图组",
+      "zh-Hant": "手太陽小腸經圖組",
+      en: "Hand Taiyang Small Intestine Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "围绕手太阳小肠经的体表循行、体内联系与手腕、肘臂、肩背、颈项、面部局部穴位分层呈现。",
+      "zh-Hant": "圍繞手太陽小腸經的體表循行、體內聯繫與手腕、肘臂、肩背、頸項、面部局部穴位分層呈現。",
+      en: "The Small Intestine meridian from hand to face, including its surface pathway, internal connections, and regional point groups.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-007",
+    slug: "bladder-meridian-atlas",
+    code: "XQY-MER-BL-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "足太阳膀胱经图组",
+      "zh-Hant": "足太陽膀胱經圖組",
+      en: "Foot Taiyang Bladder Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "梳理足太阳膀胱经由头项、背腰、臀腿至足外侧的长线路结构。",
+      "zh-Hant": "梳理足太陽膀胱經由頭項、背腰、臀腿至足外側的長線路結構。",
+      en: "The long course of the Bladder meridian from head and back through the lower limb to the lateral foot.",
+    },
+  }),
+  defineWork({
+    id: "work-008",
+    slug: "kidney-meridian-atlas",
+    code: "XQY-MER-KI-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "足少阴肾经图组",
+      "zh-Hant": "足少陰腎經圖組",
+      en: "Foot Shaoyin Kidney Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "整理足少阴肾经的足底起始、下肢内侧上行、胸腹循行与体内联系。",
+      "zh-Hant": "整理足少陰腎經的足底起始、下肢內側上行、胸腹循行與體內聯繫。",
+      en: "The Kidney meridian from its plantar origin through the medial lower limb and trunk, with internal connections.",
+    },
+  }),
+  defineWork({
+    id: "work-009",
+    slug: "pericardium-meridian-atlas",
+    code: "XQY-MER-PC-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "手厥阴心包经图组",
+      "zh-Hant": "手厥陰心包經圖組",
+      en: "Hand Jueyin Pericardium Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "整理手厥阴心包经的内外循行与上肢局部穴位。",
+      "zh-Hant": "整理手厥陰心包經的內外循行與上肢局部穴位。",
+      en: "The internal and external pathways of the Pericardium meridian with local point regions of the upper limb.",
+    },
+  }),
+  defineWork({
+    id: "work-010",
+    slug: "sanjiao-meridian-atlas",
+    code: "XQY-MER-SJ-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "手少阳三焦经图组",
+      "zh-Hant": "手少陽三焦經圖組",
+      en: "Hand Shaoyang Sanjiao Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "呈现手少阳三焦经循行与上肢、颈项、耳周局部穴位。",
+      "zh-Hant": "呈現手少陽三焦經循行與上肢、頸項、耳周局部穴位。",
+      en: "The Sanjiao meridian pathway and local point regions of the upper limb, neck, and ear.",
+    },
+  }),
+  defineWork({
+    id: "work-011",
+    slug: "gallbladder-meridian-atlas",
+    code: "XQY-MER-GB-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "足少阳胆经图组",
+      "zh-Hant": "足少陽膽經圖組",
+      en: "Foot Shaoyang Gallbladder Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "梳理足少阳胆经由头面、胁肋、下肢至足部的线路结构。",
+      "zh-Hant": "梳理足少陽膽經由頭面、脅肋、下肢至足部的線路結構。",
+      en: "The Gallbladder meridian pathway from head and flank through the lower limb to the foot.",
+    },
+  }),
+  defineWork({
+    id: "work-012",
+    slug: "liver-meridian-atlas",
+    code: "XQY-MER-LR-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "足厥阴肝经图组",
+      "zh-Hant": "足厥陰肝經圖組",
+      en: "Foot Jueyin Liver Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "围绕足厥阴肝经的体表、体内联系与足腿腹胁局部穴位进行整理。",
+      "zh-Hant": "圍繞足厥陰肝經的體表、體內聯繫與足腿腹脅局部穴位進行整理。",
+      en: "The surface and internal pathways of the Liver meridian with local point regions from foot to flank.",
+    },
+  }),
+  defineWork({
+    id: "work-013",
+    slug: "ren-meridian-atlas",
+    code: "XQY-MER-REN-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "任脉图组",
+      "zh-Hant": "任脈圖組",
+      en: "Ren Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "整理任脉体表循行、体内联系与胸腹正中线穴位。",
+      "zh-Hant": "整理任脈體表循行、體內聯繫與胸腹正中線穴位。",
+      en: "The surface pathway, internal connections, and midline points of the Ren meridian.",
+    },
+  }),
+  defineWork({
+    id: "work-014",
+    slug: "du-meridian-atlas",
+    code: "XQY-MER-DU-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "督脉图组",
+      "zh-Hant": "督脈圖組",
+      en: "Du Meridian Atlas",
+    },
+    summary: {
+      "zh-CN": "呈现督脉由会阴、脊柱、头项至面部的循行与局部穴位。",
+      "zh-Hant": "呈現督脈由會陰、脊柱、頭項至面部的循行與局部穴位。",
+      en: "The Du meridian pathway from the perineum along the spine and head to the face, with local point regions.",
+    },
+  }),
+  defineWork({
+    id: "work-015",
+    slug: "nine-needles-atlas",
+    code: "XQY-MER-JZ-001",
+    category: "meridians",
+    title: {
+      "zh-CN": "九针图谱",
+      "zh-Hant": "九針圖譜",
+      en: "Nine Needles Atlas",
+    },
+    summary: {
+      "zh-CN": "以九针形制为核心，整理传统针具结构与识别要点。",
+      "zh-Hant": "以九針形制為核心，整理傳統針具結構與識別要點。",
+      en: "A visual reference to the forms and identifying features of the traditional Nine Needles.",
+    },
+    featured: true,
+  }),
+  defineWork({
+    id: "work-101",
+    slug: "xanthium-herb-atlas",
+    code: "XQY-HERB-WC-001",
+    category: "herbs",
+    title: { "zh-CN": "苍耳子图谱", "zh-Hant": "蒼耳子圖譜", en: "Xanthium Fruit Atlas" },
+    summary: {
+      "zh-CN": "围绕苍耳子的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞蒼耳子的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Xanthium fruit covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-102",
+    slug: "angelica-dahurica-herb-atlas",
+    code: "XQY-HERB-WC-002",
+    category: "herbs",
+    title: { "zh-CN": "白芷图谱", "zh-Hant": "白芷圖譜", en: "Angelica Dahurica Atlas" },
+    summary: {
+      "zh-CN": "围绕白芷的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞白芷的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Angelica dahurica covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-103",
+    slug: "scallion-stalk-herb-atlas",
+    code: "XQY-HERB-WC-003",
+    category: "herbs",
+    title: { "zh-CN": "葱白图谱", "zh-Hant": "蔥白圖譜", en: "Scallion Stalk Atlas" },
+    summary: {
+      "zh-CN": "围绕葱白的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞蔥白的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of scallion stalk covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-104",
+    slug: "centipeda-herb-atlas",
+    code: "XQY-HERB-WC-004",
+    category: "herbs",
+    title: { "zh-CN": "鹅不食草图谱", "zh-Hant": "鵝不食草圖譜", en: "Centipeda Atlas" },
+    summary: {
+      "zh-CN": "围绕鹅不食草的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞鵝不食草的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Centipeda covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-105",
+    slug: "saposhnikovia-herb-atlas",
+    code: "XQY-HERB-WC-005",
+    category: "herbs",
+    title: { "zh-CN": "防风图谱", "zh-Hant": "防風圖譜", en: "Saposhnikovia Root Atlas" },
+    summary: {
+      "zh-CN": "围绕防风的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞防風的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Saposhnikovia root covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-106",
+    slug: "ligusticum-herb-atlas",
+    code: "XQY-HERB-WC-006",
+    category: "herbs",
+    title: { "zh-CN": "藁本图谱", "zh-Hant": "藁本圖譜", en: "Chinese Lovage Rhizome Atlas" },
+    summary: {
+      "zh-CN": "围绕藁本的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞藁本的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Chinese lovage rhizome covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-107",
+    slug: "tamarisk-herb-atlas",
+    code: "XQY-HERB-WC-007",
+    category: "herbs",
+    title: { "zh-CN": "怪柳图谱", "zh-Hant": "怪柳圖譜", en: "Tamarisk Twig Atlas" },
+    summary: {
+      "zh-CN": "围绕怪柳的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞怪柳的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of tamarisk twig covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-108",
+    slug: "cinnamon-twig-herb-atlas",
+    code: "XQY-HERB-WC-008",
+    category: "herbs",
+    title: { "zh-CN": "桂枝图谱", "zh-Hant": "桂枝圖譜", en: "Cinnamon Twig Atlas" },
+    summary: {
+      "zh-CN": "围绕桂枝的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞桂枝的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of cinnamon twig covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-109",
+    slug: "coriander-herb-atlas",
+    code: "XQY-HERB-WC-009",
+    category: "herbs",
+    title: { "zh-CN": "胡荽图谱", "zh-Hant": "胡荽圖譜", en: "Coriander Atlas" },
+    summary: {
+      "zh-CN": "围绕胡荽的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞胡荽的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of coriander covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-110",
+    slug: "schizonepeta-herb-atlas",
+    code: "XQY-HERB-WC-010",
+    category: "herbs",
+    title: { "zh-CN": "荆芥图谱", "zh-Hant": "荊芥圖譜", en: "Schizonepeta Herb Atlas" },
+    summary: {
+      "zh-CN": "围绕荆芥的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞荊芥的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Schizonepeta herb covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-111",
+    slug: "ephedra-herb-atlas",
+    code: "XQY-HERB-WC-011",
+    category: "herbs",
+    title: { "zh-CN": "麻黄图谱", "zh-Hant": "麻黃圖譜", en: "Ephedra Herb Atlas" },
+    summary: {
+      "zh-CN": "围绕麻黄的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞麻黃的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Ephedra herb covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-112",
+    slug: "notopterygium-herb-atlas",
+    code: "XQY-HERB-WC-012",
+    category: "herbs",
+    title: { "zh-CN": "羌活图谱", "zh-Hant": "羌活圖譜", en: "Notopterygium Rhizome and Root Atlas" },
+    summary: {
+      "zh-CN": "围绕羌活的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞羌活的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Notopterygium rhizome and root covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-113",
+    slug: "fresh-ginger-herb-atlas",
+    code: "XQY-HERB-WC-013",
+    category: "herbs",
+    title: { "zh-CN": "生姜图谱", "zh-Hant": "生薑圖譜", en: "Fresh Ginger Atlas" },
+    summary: {
+      "zh-CN": "围绕生姜的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞生薑的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of fresh ginger covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-114",
+    slug: "asarum-herb-atlas",
+    code: "XQY-HERB-WC-014",
+    category: "herbs",
+    title: { "zh-CN": "细辛图谱", "zh-Hant": "細辛圖譜", en: "Asarum Herb Atlas" },
+    summary: {
+      "zh-CN": "围绕细辛的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞細辛的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Asarum herb covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-115",
+    slug: "mosla-herb-atlas",
+    code: "XQY-HERB-WC-015",
+    category: "herbs",
+    title: { "zh-CN": "香薷图谱", "zh-Hant": "香薷圖譜", en: "Mosla Herb Atlas" },
+    summary: {
+      "zh-CN": "围绕香薷的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞香薷的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Mosla herb covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-116",
+    slug: "magnolia-flower-herb-atlas",
+    code: "XQY-HERB-WC-016",
+    category: "herbs",
+    title: { "zh-CN": "辛夷图谱", "zh-Hant": "辛夷圖譜", en: "Magnolia Flower Atlas" },
+    summary: {
+      "zh-CN": "围绕辛夷的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞辛夷的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of magnolia flower covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-117",
+    slug: "perilla-herb-atlas",
+    code: "XQY-HERB-WC-017",
+    category: "herbs",
+    title: { "zh-CN": "紫苏图谱", "zh-Hant": "紫蘇圖譜", en: "Perilla Atlas" },
+    summary: {
+      "zh-CN": "围绕紫苏的植物形态、药材性味归经与发散风寒应用要点整理。",
+      "zh-Hant": "圍繞紫蘇的植物形態、藥材性味歸經與發散風寒應用要點整理。",
+      en: "A plate of Perilla covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+];

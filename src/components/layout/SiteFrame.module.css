@@ -1,0 +1,85 @@
+.shell {
+  min-height: 100dvh;
+}
+
+.stage {
+  min-width: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  position: relative;
+  min-width: 0;
+  flex: 1;
+  isolation: isolate;
+}
+
+.content::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--color-porcelain-500);
+  content: "";
+  opacity: 0.72;
+  pointer-events: none;
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: page-rule-enter 680ms 80ms var(--ease-catalog) both;
+}
+
+.content > :global(main:not([data-entrance="orchestrated"])) {
+  animation: page-settle 560ms var(--ease-catalog) both;
+}
+
+.content:focus {
+  outline: none;
+}
+
+@media (min-width: 80rem) {
+  .shell {
+    display: grid;
+    grid-template-columns: 8.25rem minmax(0, 1fr);
+  }
+}
+
+@keyframes page-rule-enter {
+  from {
+    opacity: 0.2;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 0.72;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes page-settle {
+  from {
+    opacity: 0.84;
+    filter: blur(1.5px);
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content::before,
+  .content > :global(main:not([data-entrance="orchestrated"])) {
+    animation: none;
+  }
+
+  .content::before {
+    transform: scaleX(1);
+  }
+}

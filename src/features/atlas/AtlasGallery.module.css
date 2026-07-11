@@ -1,0 +1,247 @@
+.gallery {
+  min-width: 0;
+}
+
+.galleryHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.galleryHeading h2 {
+  font-size: var(--text-heading-3);
+}
+
+.galleryHeading p {
+  margin-top: 0.25rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.openViewer,
+.galleryNavigation button,
+.viewerHeader button,
+.viewerArrows button {
+  min-height: 2.75rem;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-hair);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0.625rem 1rem;
+}
+
+.mainFigure {
+  margin-top: 1.25rem;
+  border: 1px solid var(--color-xuan-200);
+  background: white;
+}
+
+.mainFigure figcaption {
+  padding: 0.875rem 1rem;
+  border-top: 1px solid var(--color-xuan-200);
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.galleryNavigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.thumbnailList {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thumbnailItem {
+  min-width: 0;
+}
+
+.thumbnailFrame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  background: white;
+}
+
+.thumbnailFrame[data-selected] {
+  border-color: var(--color-porcelain-700);
+  box-shadow: 0 0 0 2px var(--color-porcelain-700);
+}
+
+.thumbnailFrame img {
+  object-fit: cover;
+}
+
+.thumbnailFrame button {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.thumbnailItem p {
+  margin-top: 0.25rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-caption);
+  text-align: center;
+}
+
+.viewer {
+  width: min(78rem, calc(100vw - 36px));
+  max-width: none;
+  height: calc(100dvh - 36px);
+  max-height: none;
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-dialog);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-dialog);
+  color: var(--color-foreground);
+}
+
+.viewer::backdrop {
+  background: color-mix(in oklch, var(--color-ink-950) 72%, transparent);
+}
+
+.viewerShell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100%;
+}
+
+.viewerHeader {
+  z-index: 1;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--color-rule);
+  background: var(--color-surface);
+}
+
+.viewerHeader h2 {
+  font-size: var(--text-heading-3);
+}
+
+.viewerHeader p {
+  margin-top: 0.25rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.closeViewer {
+  flex: 0 0 auto;
+}
+
+.viewerBody {
+  min-height: 0;
+  overflow: auto;
+  padding: 1.25rem;
+  background: var(--color-xuan-100);
+}
+
+.viewerImage {
+  width: min(100%, 32rem);
+  margin-inline: auto;
+  border: 1px solid var(--color-xuan-200);
+  background: white;
+}
+
+.viewerFooter {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--color-rule);
+  background: var(--color-surface);
+}
+
+.viewerArrows {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.viewerThumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  max-height: 6.5rem;
+  overflow: auto;
+  padding: 3px;
+}
+
+.viewerThumbnails button {
+  display: grid;
+  width: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-hair);
+  background: transparent;
+  color: var(--color-ink-700);
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+
+.viewerThumbnails button[aria-pressed="true"] {
+  border-color: var(--color-porcelain-700);
+  background: var(--color-porcelain-100);
+  color: var(--color-porcelain-950);
+}
+
+@media (max-width: 47.99rem) {
+  .thumbnailList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .viewerHeader {
+    padding: 0.875rem 1rem;
+  }
+
+  .viewerHeader h2 {
+    font-size: 1.125rem;
+  }
+
+  .viewerHeader p {
+    max-width: 18rem;
+  }
+
+  .viewerBody {
+    padding: 0.75rem;
+  }
+
+  .viewerFooter {
+    grid-template-columns: 1fr;
+    padding: 0.75rem 1rem;
+  }
+
+  .viewerArrows {
+    justify-content: space-between;
+  }
+
+  .viewerThumbnails {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    max-height: none;
+    overflow-x: auto;
+  }
+}

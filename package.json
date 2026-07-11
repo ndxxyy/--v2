@@ -1,0 +1,41 @@
+{
+  "name": "xiao-zhong-qi-yi-v2",
+  "version": "0.1.0",
+  "private": true,
+  "description": "小钟岐医个人独立网站 V2",
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": ">=24.0.0 <27",
+    "npm": ">=11.0.0"
+  },
+  "scripts": {
+    "atlas:images": "node scripts/atlas/generate-images.mjs",
+    "atlas:watermark:init": "node scripts/atlas/create-watermark-key.mjs",
+    "atlas:watermark:visible:asset": "node scripts/atlas/create-visible-watermark-asset.mjs",
+    "atlas:watermark:visible:masters": "node scripts/atlas/generate-visible-masters.mjs",
+    "atlas:watermark:verify": "node scripts/atlas/verify-watermarks.mjs",
+    "atlas:watermark:detect": "node scripts/atlas/verify-watermarks.mjs",
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.2.10",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.2",
+    "@types/node": "24.13.3",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.10",
+    "sharp": "0.34.5",
+    "tailwindcss": "4.3.2",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,167 @@
+.rail {
+  display: none;
+}
+
+@media (min-width: 80rem) {
+  .rail {
+    position: sticky;
+    top: 0;
+    display: flex;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background: var(--color-porcelain-900);
+    color: var(--color-xuan-50);
+    padding: 1.75rem 1.35rem 1.25rem;
+  }
+
+  .mark {
+    position: relative;
+    width: 4.8rem;
+    height: 4.8rem;
+    display: block;
+    flex: 0 0 auto;
+    color: var(--color-cinnabar-300);
+    transition: transform 260ms var(--ease-catalog);
+  }
+
+  .mark::after {
+    position: absolute;
+    inset: 0.3rem;
+    border: 1px solid color-mix(in oklch, var(--color-cinnabar-500) 0%, transparent);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.86) rotate(-3deg);
+    transition:
+      opacity 260ms var(--ease-catalog),
+      transform 420ms var(--ease-catalog),
+      border-color 260ms var(--ease-catalog);
+  }
+
+  .mark:hover,
+  .mark:focus-visible {
+    transform: translateY(-0.12rem) rotate(1deg);
+  }
+
+  .mark:hover::after,
+  .mark:focus-visible::after {
+    border-color: color-mix(in oklch, var(--color-cinnabar-500) 55%, transparent);
+    opacity: 1;
+    transform: scale(1.08) rotate(2deg);
+  }
+
+  .seal {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: seal-settle 720ms var(--ease-catalog) both;
+  }
+
+  .brandBlock {
+    margin-top: 2.15rem;
+  }
+
+  .wordmark {
+    color: var(--color-xuan-50);
+    font-family: var(--font-display);
+    font-size: clamp(1.9rem, 2.4vw, 2.5rem);
+    letter-spacing: 0.13em;
+    line-height: 1.35;
+    text-decoration: none;
+    writing-mode: vertical-rl;
+  }
+
+  .wordmarkEnglish {
+    width: 5.25rem;
+    display: block;
+    font-size: var(--text-body-lg);
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    text-align: center;
+    writing-mode: horizontal-tb;
+  }
+
+  .railNav {
+    width: 100%;
+    min-height: 0;
+    margin-top: clamp(2rem, 4vh, 3.25rem);
+  }
+
+  .railNav ul {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--color-porcelain-700);
+    list-style: none;
+  }
+
+  .railLink {
+    min-height: clamp(3.8rem, 8vh, 4.75rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    border-bottom: 1px solid var(--color-porcelain-700);
+    color: var(--color-xuan-50);
+    font-size: var(--text-caption);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .railLink:hover span:last-child,
+  .railLink:focus-visible span:last-child {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .railIndex {
+    font-family: var(--font-display);
+    font-size: var(--text-body-lg);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
+
+  .railLanguages {
+    width: 100%;
+    flex: 0 0 auto;
+    margin-top: auto;
+    padding-top: 1.25rem;
+  }
+
+  .railEnglish .brandBlock {
+    margin-top: 1.4rem;
+  }
+
+  .railEnglish .railNav {
+    margin-top: clamp(1.4rem, 2.5vh, 2rem);
+  }
+
+  .railEnglish .railLink {
+    min-height: clamp(3.4rem, 7vh, 4rem);
+    letter-spacing: 0.04em;
+  }
+}
+
+@keyframes seal-settle {
+  from {
+    opacity: 0.3;
+    transform: scale(0.86) rotate(-2deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mark,
+  .mark::after {
+    transition: none;
+  }
+
+  .seal {
+    animation: none;
+  }
+}

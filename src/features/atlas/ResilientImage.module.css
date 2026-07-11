@@ -1,0 +1,81 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: var(--color-xuan-100);
+}
+
+.frame::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: var(--color-celadon-100);
+  opacity: 0.36;
+  animation: image-pulse 1.6s ease-in-out infinite alternate;
+}
+
+.frame[data-loaded]::after,
+.frame:has(.error)::after {
+  display: none;
+}
+
+.image {
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-catalog);
+}
+
+.action {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.frame[data-loaded] .image {
+  opacity: 1;
+}
+
+.error {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  color: var(--color-ink-700);
+  text-align: center;
+}
+
+.retry {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-hair);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+@keyframes image-pulse {
+  from {
+    opacity: 0.16;
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame::after {
+    animation: none;
+  }
+}

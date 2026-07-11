@@ -1,0 +1,32 @@
+# Dependencies
+/node_modules
+
+# Next.js
+/.next
+/out
+
+# Tests and reports
+/coverage
+/test-results
+/playwright-report
+
+# Local environment
+.env*
+!.env.example
+
+# OS and editor files
+.DS_Store
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Protected source assets: never publish or commit masters
+/content-assets/masters/**
+!/content-assets/masters/README.md
+

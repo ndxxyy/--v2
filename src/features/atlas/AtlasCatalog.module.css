@@ -1,0 +1,338 @@
+.page {
+  width: min(100% - (var(--spacing-page) * 2), var(--container-catalog));
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 6vw, 5rem) var(--spacing-section);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(10rem, 4fr);
+  gap: var(--grid-gutter-desktop);
+  align-items: end;
+  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.introLead {
+  max-width: 54rem;
+}
+
+.introLabel {
+  margin-bottom: 0.75rem;
+  color: var(--color-primary);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.pageTitle {
+  font-size: var(--text-heading-1);
+}
+
+.pageDescription {
+  max-width: 66ch;
+  margin-top: 1.25rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-body-lg);
+}
+
+.totalCount {
+  justify-self: end;
+  color: var(--color-primary);
+  font-family: var(--font-display);
+  font-size: var(--text-heading-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.categoryNav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.categoryLink {
+  display: flex;
+  min-height: 3.75rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-right: 1px solid var(--color-rule);
+  color: var(--color-ink-700);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-catalog), color var(--duration-fast) var(--ease-catalog);
+}
+
+.categoryLink:first-child {
+  padding-left: 0;
+}
+
+.categoryLink:last-child {
+  border-right: 0;
+}
+
+.categoryLink:hover,
+.categoryLink[aria-current="page"] {
+  background: var(--color-porcelain-100);
+  color: var(--color-porcelain-950);
+}
+
+.categoryLink[aria-current="page"] {
+  box-shadow: inset 0 -2px 0 var(--color-porcelain-700);
+}
+
+.categoryCount {
+  font-variant-numeric: tabular-nums;
+}
+
+.explorer {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: minmax(16rem, 4fr) minmax(0, 8fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: end;
+}
+
+.searchLabel,
+.filters legend {
+  display: block;
+  margin-bottom: 0.625rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-label);
+  font-weight: 600;
+}
+
+.searchField {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--color-ink-700);
+}
+
+.searchField:focus-within {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.searchInput {
+  min-width: 0;
+  min-height: 3rem;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+.searchInput::-webkit-search-cancel-button {
+  display: none;
+}
+
+.clearSearch,
+.resetFilters,
+.emptyAction {
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: var(--radius-hair);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.filters {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.filterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.resultsHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  padding-block: 1rem;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.currentFilter {
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.resultsTitle {
+  margin-top: 0.25rem;
+  font-size: var(--text-heading-3);
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 4rem) var(--grid-gutter-desktop);
+  margin: 0;
+  padding: clamp(1.5rem, 3vw, 2rem) 0 0;
+  list-style: none;
+}
+
+.workItem {
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-rule);
+}
+
+.imageLink {
+  display: block;
+  border: 1px solid var(--color-xuan-200);
+  background: white;
+  transition: border-color var(--duration-fast) var(--ease-catalog), transform var(--duration-fast) var(--ease-catalog);
+}
+
+.imageLink:hover {
+  border-color: var(--color-porcelain-700);
+  transform: translateY(-2px);
+}
+
+.workBody {
+  padding-top: 1.25rem;
+}
+
+.workMeta {
+  color: var(--color-ink-700);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.workTitle {
+  margin-top: 0.5rem;
+  font-size: var(--text-heading-3);
+}
+
+.workSummary {
+  margin-top: 0.75rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.workAction {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--color-primary);
+  text-underline-offset: 0.2em;
+}
+
+.emptyState {
+  max-width: 48rem;
+  margin-top: 2rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-rule);
+  background: var(--color-xuan-100);
+}
+
+.emptyState h3 {
+  font-size: var(--text-heading-3);
+}
+
+.emptyState p {
+  margin-top: 0.75rem;
+  color: var(--color-ink-700);
+}
+
+.emptyAction {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0;
+}
+
+@media (max-width: 79.99rem) {
+  .workGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 63.99rem) {
+  .controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .page {
+    padding-top: 1.5rem;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .pageDescription {
+    margin-top: 0.75rem;
+    font-size: var(--text-body);
+    line-height: 1.6;
+  }
+
+  .totalCount {
+    justify-self: start;
+  }
+
+  .categoryNav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .categoryNavAll {
+    display: none;
+  }
+
+  .categoryLink,
+  .categoryLink:first-child {
+    padding-inline: 0.75rem;
+    border-right: 1px solid var(--color-rule);
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .categoryLink:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .workGrid {
+    grid-template-columns: 1fr;
+    padding-top: 1rem;
+  }
+
+  .resultsHeader {
+    align-items: start;
+    margin-top: 1rem;
+    padding-block: 0.75rem;
+  }
+
+  .resetFilters {
+    flex: 0 0 auto;
+  }
+
+  .explorer {
+    padding-top: 1.25rem;
+  }
+
+  .controls {
+    gap: 1rem;
+  }
+
+  .filterList {
+    gap: 0.5rem;
+  }
+}

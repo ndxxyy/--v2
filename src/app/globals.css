@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: light;
+    background: var(--color-page);
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-width: 20rem;
+    min-height: 100dvh;
+    background: var(--color-page);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: 1.75;
+    font-synthesis: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    color: inherit;
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  ::placeholder {
+    color: var(--color-ink-700);
+    opacity: 1;
+  }
+
+  ::selection {
+    background: var(--color-celadon-300);
+    color: var(--color-ink-950);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+
+  dialog::backdrop {
+    background: color-mix(in oklch, var(--color-ink-950) 55%, transparent);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@layer utilities {
+  .catalog-container {
+    width: min(100% - (var(--spacing-page) * 2), var(--container-catalog));
+    margin-inline: auto;
+  }
+
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns-mobile), minmax(0, 1fr));
+    column-gap: var(--grid-gutter-mobile);
+  }
+
+  .reading-measure {
+    max-width: var(--container-reading);
+  }
+
+  .tabular-numbers {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (min-width: 48rem) {
+  @layer utilities {
+    .catalog-grid {
+      grid-template-columns: repeat(var(--grid-columns-tablet), minmax(0, 1fr));
+      column-gap: var(--grid-gutter-tablet);
+    }
+  }
+}
+
+@media (min-width: 80rem) {
+  @layer utilities {
+    .catalog-grid {
+      grid-template-columns: repeat(var(--grid-columns-desktop), minmax(0, 1fr));
+      column-gap: var(--grid-gutter-desktop);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight;
+  }
+}
