@@ -134,6 +134,20 @@
   background: var(--color-celadon-50);
 }
 
+.scenarioCardFriendly {
+  border-color: var(--color-porcelain-300);
+  background: var(--color-porcelain-50);
+}
+
+.scenarioCardFrequent {
+  border-color: var(--color-celadon-500);
+  background: var(--color-celadon-50);
+}
+
+.scenarioCardPremium {
+  border-color: var(--color-porcelain-700);
+}
+
 .scopeReviewLabel {
   background: var(--color-celadon-700);
   color: var(--color-xuan-50);
@@ -170,6 +184,21 @@
   background: var(--color-celadon-100);
 }
 
+.scenarioCardFriendly .quoteBlock {
+  border-color: var(--color-porcelain-300);
+  background: var(--color-porcelain-100);
+}
+
+.scenarioCardFrequent .quoteBlock {
+  border-color: var(--color-celadon-300);
+  background: var(--color-celadon-100);
+}
+
+.scenarioCardPremium .quoteBlock {
+  border-color: var(--color-porcelain-300);
+  background: var(--color-porcelain-50);
+}
+
 .quoteModeLabel {
   color: var(--color-muted);
   font-size: var(--text-caption);
@@ -188,6 +217,59 @@
   margin-top: 1.25rem;
 }
 
+.referenceFeeBlock {
+  min-width: 0;
+  margin-top: 1.25rem;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-hair);
+  background: var(--color-surface);
+  padding: 1rem;
+}
+
+.referenceFeeTitle {
+  color: var(--color-muted);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.referenceFeeNote {
+  max-width: 36ch;
+  margin-top: 0.5rem;
+  color: var(--color-muted);
+  font-size: var(--text-caption);
+  line-height: 1.65;
+}
+
+.referenceFeeList {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.referenceFeeList li {
+  display: grid;
+  gap: 0.25rem;
+  overflow-wrap: anywhere;
+  border-top: 1px solid var(--color-rule);
+  padding-top: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.referenceFeeList span {
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.referenceFeeList strong {
+  color: var(--color-foreground);
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 .scenarioDetails {
   flex: 1;
   padding: 1.5rem;
@@ -198,6 +280,54 @@
   font-size: var(--text-label);
   font-weight: 600;
   letter-spacing: 0.06em;
+}
+
+.supplementBlock {
+  display: grid;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-rule);
+  padding-bottom: 1.25rem;
+}
+
+.supplementBlock p {
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.supplementApplicable {
+  font-weight: 600;
+}
+
+.supplementUseList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.supplementUseList li {
+  position: relative;
+  padding-left: 0.85rem;
+  color: var(--color-foreground);
+  font-size: var(--text-body-sm);
+}
+
+.supplementUseList li::before {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--color-celadon-700);
+  content: "";
+}
+
+.supplementNote {
+  border-top: 1px solid var(--color-rule);
+  padding-top: 0.75rem;
 }
 
 .compactList {
@@ -223,6 +353,88 @@
 
 .scenarioCardEmphasis .activationRow {
   border-color: var(--color-celadon-300);
+}
+
+.priceNotesSection {
+  display: grid;
+  gap: 2rem;
+  margin-top: var(--spacing-section);
+  border-block: 1px solid var(--color-rule);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+.policyHeading h2 {
+  max-width: 12ch;
+  font-size: var(--text-heading-2);
+}
+
+.priceNotesBody {
+  display: grid;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.priceNotesBody > p {
+  max-width: 70ch;
+  color: var(--color-muted);
+}
+
+.authorizationScopeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1px;
+  margin-top: 0.75rem;
+  border: 1px solid var(--color-rule);
+  background: var(--color-rule);
+}
+
+.authorizationScopeGrid > div {
+  min-width: 0;
+  background: var(--color-surface);
+  padding: 1.25rem;
+}
+
+.authorizationScopeGrid h3 {
+  font-size: var(--text-body-lg);
+}
+
+.authorizationScopeGrid ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.authorizationScopeGrid li {
+  position: relative;
+  padding-left: 0.85rem;
+  color: var(--color-muted);
+  font-size: var(--text-body-sm);
+}
+
+.authorizationScopeGrid li::before {
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--color-celadon-700);
+  content: "";
+}
+
+.priceNotesSection {
+  margin-top: 0;
+  border-top: 0;
+  background: var(--color-porcelain-50);
+}
+
+.priceNotesEmphasis {
+  margin-top: 0.75rem;
+  border-top: 1px solid var(--color-porcelain-300);
+  padding-top: 1.25rem;
+  color: var(--color-foreground) !important;
+  font-weight: 600;
 }
 
 .activationRow span {
@@ -579,7 +791,8 @@
   .editorialSection,
   .biography,
   .directionSection,
-  .processSection {
+  .processSection,
+  .priceNotesSection {
     grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.7fr);
     column-gap: clamp(2rem, 6vw, 6rem);
   }
@@ -641,11 +854,25 @@
 @media (min-width: 72rem) {
   .scenarioGrid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 0;
+  }
+
+  .scenarioCard:nth-child(-n + 4) {
+    display: grid;
+    grid-row: span 7;
+    grid-template-rows: subgrid;
+  }
+
+  .scenarioCard:nth-child(-n + 4) .quoteBlock {
+    display: grid;
+    grid-row: span 4;
+    grid-template-rows: subgrid;
   }
 
   .scenarioCard:nth-child(5),
   .scenarioCard:nth-child(6) {
     grid-column: span 2;
+    margin-top: var(--grid-gutter-desktop);
   }
 }
 

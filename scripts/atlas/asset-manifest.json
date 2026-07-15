@@ -1,0 +1,2851 @@
+{
+  "version": 2,
+  "release": "1.1",
+  "review": {
+    "status": "approved",
+    "baseline": "v1.0",
+    "reviewedAt": "2026-07-13T15:30:28.000Z",
+    "evidence": "private-master-import-record-cross-check+user-provided-local-batches-and-replacements-2026-07-13"
+  },
+  "sourceTypes": {
+    "user-provided-watermarked": {
+      "description": "用户提供且已审核的全分辨率网状明水印母版；公开生成器不得再次叠加明水印。",
+      "allowedVisibleWatermarkPolicies": [
+        "provided-mesh"
+      ]
+    },
+    "clean-source-preserved": {
+      "description": "已审核的既有全分辨率母版；保留源图已有品牌标识，不新增明水印。",
+      "allowedVisibleWatermarkPolicies": [
+        "preserve-existing-mesh",
+        "preserve-existing-seal"
+      ]
+    }
+  },
+  "variantSpecs": {
+    "thumbnail": {
+      "directory": "thumbnails",
+      "width": 960,
+      "height": 1280,
+      "quality": 78,
+      "format": "webp"
+    },
+    "preview": {
+      "directory": "previews",
+      "width": 1440,
+      "height": 1440,
+      "quality": 88,
+      "format": "webp"
+    }
+  },
+  "derivationContract": {
+    "autoOrient": true,
+    "resizeFit": "inside",
+    "resizeKernel": "lanczos3",
+    "withoutEnlargement": true,
+    "colourspace": "srgb",
+    "webpEffort": 5,
+    "webpSmartSubsample": true,
+    "blindWatermarkScheme": "xqy-dct-qim-v2",
+    "publicVisibleWatermark": {
+      "brand": "小钟岐医",
+      "domain": "xiaozhongqiyi.com",
+      "opacity": 0.12,
+      "position": "bottom-right",
+      "scheme": "xqy-public-corner-v1"
+    }
+  },
+  "visibleWatermarkSources": {
+    "user-provided-tiled-xqy-mesh": {
+      "description": "用户提供母版中已烘焙的白色半透明平铺“小钟岐医”网状标识。"
+    },
+    "source-existing-mesh": {
+      "description": "源图中已存在并经哈希审核的“小钟岐医”网状品牌标识。"
+    },
+    "source-existing-seal": {
+      "description": "源图中已存在并经哈希审核的“小钟岐医”印章品牌标识。"
+    }
+  },
+  "visibleWatermarkPolicies": {
+    "provided-mesh": {
+      "reviewStatus": "approved",
+      "source": "user-provided-tiled-xqy-mesh",
+      "description": "用户提供的白色半透明平铺网状“小钟岐医”明水印；派生时仅继承，不再叠加。",
+      "descriptor": {
+        "applied": true,
+        "brand": "小钟岐医",
+        "color": "#ffffff",
+        "opacity": 0.5,
+        "pattern": "tiled",
+        "provenance": "user-provided-master",
+        "scheme": "xqy-visible-mesh-v2"
+      }
+    },
+    "preserve-existing-mesh": {
+      "reviewStatus": "approved",
+      "source": "source-existing-mesh",
+      "description": "源图已有可确认的网状品牌标识；保留原标识，不重复叠加明水印。",
+      "descriptor": {
+        "applied": false,
+        "brand": "小钟岐医",
+        "reason": "source-identifier-preserved",
+        "scheme": "source-visible-preserved-v1",
+        "sourceIdentifier": "existing-mesh"
+      }
+    },
+    "preserve-existing-seal": {
+      "reviewStatus": "approved",
+      "source": "source-existing-seal",
+      "description": "源图已有可确认的印章品牌标识；保留原标识，不重复叠加明水印。",
+      "descriptor": {
+        "applied": false,
+        "brand": "小钟岐医",
+        "reason": "source-identifier-preserved",
+        "scheme": "source-visible-preserved-v1",
+        "sourceIdentifier": "existing-seal"
+      }
+    }
+  },
+  "assets": [
+    {
+      "id": "bladder-meridian/external-route",
+      "relativePath": "bladder-meridian/external-route.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "34ca3ecc233e665fa53e89a39929b94c672cf70f6780219effa753a3b54c38e0",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/internal-route",
+      "relativePath": "bladder-meridian/internal-route.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "ad5c5dabafa31cced32b3aada45a080c38533ecadbbbe206a6ad4af17044070a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-1",
+      "relativePath": "bladder-meridian/local-points-1.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "0fe1ef0b2181f5039be8f91433cf3e459ac8bd336154c7ed0ea05a311fc32490",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-2",
+      "relativePath": "bladder-meridian/local-points-2.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "ebb4c0efca27d705210bb5d0ddd4a3c09d3d6f79fbe92b98b9e869ad6807ce16",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-3",
+      "relativePath": "bladder-meridian/local-points-3.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "096d85f5d06d3f3cdc1da470e623d1220349ffccb997463423f4184120aa3aab",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-4",
+      "relativePath": "bladder-meridian/local-points-4.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "821c727445c498f5949661c616bcdee85e5d554aef8bd4406d8909d0018968cc",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-4-1",
+      "relativePath": "bladder-meridian/local-points-4-1.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "2d7fb9f5d8ed43974b051cc30784bc98b37e41d9d101bf6d9fa28020b4f0c490",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-5",
+      "relativePath": "bladder-meridian/local-points-5.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "d44303e9e16c3ff735109ec8e16846c2d5383efe7d318b5971fe3dd182eb6946",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-6",
+      "relativePath": "bladder-meridian/local-points-6.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "cb6e9632d4f0424aa972dd61f8bbd05ebdd5d1aea50f86df896cbf44f1c32208",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "bladder-meridian/local-points-7",
+      "relativePath": "bladder-meridian/local-points-7.jpg",
+      "workId": "work-007",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "5c80f07a7e063c90c971eb7d2c5fa20925c3ff694f0672f93ce63f0b5f18cd6c",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/external-route",
+      "relativePath": "du-meridian/external-route.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "51b8a9e37658cc1d6c0d2174eba5b20b27e080d9164ecf8ef44d5840e3061edf",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/internal-route",
+      "relativePath": "du-meridian/internal-route.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "ab39f37e063e75e7a1b6e16e56bc62fff311ea0942f1a46458fac607221ee2b2",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/local-points-1",
+      "relativePath": "du-meridian/local-points-1.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "ed5d0d1fde376851cc80d51dfba813875019db054d5f1f925a3c80b5d732340e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/local-points-2",
+      "relativePath": "du-meridian/local-points-2.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "593c9c18aa1653c5ece0ee0c669ca1d9e39503814c90fe9b7dd5214ffda73991",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/local-points-3",
+      "relativePath": "du-meridian/local-points-3.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "b2c130f3478df36b87b4ee3d621101905c96a443711cc97d2a4fc0653e0b88ec",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/local-points-4",
+      "relativePath": "du-meridian/local-points-4.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "b5b7bc5d3b3f191d128dc11f53ebc23f6b61d065fb7d13b36a463b60e5ed84dc",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "du-meridian/local-points-5",
+      "relativePath": "du-meridian/local-points-5.jpg",
+      "workId": "work-014",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "4751321ffee6ebe53444ec62f0a4e65d1e626d820d8958cf995ec5fff5a93cac",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/dan-preparation",
+      "relativePath": "formulas/dosage-forms/dan-preparation.jpg",
+      "workId": "work-135",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "98cf79cbd3714f7b86d8c9f3dfbc2e7327b85c9a92cd4cd91abf816edd15eb18",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/decoction",
+      "relativePath": "formulas/dosage-forms/decoction.jpg",
+      "workId": "work-131",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "741f8fc222d59246188fc760b46dca9371b8d1583f18aaf7167ec379633bad4f",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/distilled-dew",
+      "relativePath": "formulas/dosage-forms/distilled-dew.jpg",
+      "workId": "work-137",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "534e52adc230c9e0072e6e6583a1f2084137182fc9fb61c285a3b01ffd6ade9b",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/granule",
+      "relativePath": "formulas/dosage-forms/granule.jpg",
+      "workId": "work-139",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "65b93d654d74746126151b304cf4d248f4eb18576167eace4a514a3eec3be7f0",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/home-decoction-decoction-version",
+      "relativePath": "formulas/dosage-forms/home-decoction-decoction-version.jpg",
+      "workId": "work-140",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "ddbcf9b771c3955a3ad1b3b8707d66c94717b94e7f99c14eacf9ea6774865e20",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/home-decoction-formula-version",
+      "relativePath": "formulas/dosage-forms/home-decoction-formula-version.jpg",
+      "workId": "work-140",
+      "category": "formulas",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "66a47e2eec09e23bcf5943e0809fa79607c5fdc231bfaeb1c3e3e783b8e879e7",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-seal",
+      "visibleWatermarkSource": "source-existing-seal",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/medicinal-tea",
+      "relativePath": "formulas/dosage-forms/medicinal-tea.jpg",
+      "workId": "work-138",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "95633d0e78287be8d8e822634d9e8feb0c7eb0d52482dda4c63a9eaeda589c19",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/medicinal-wine",
+      "relativePath": "formulas/dosage-forms/medicinal-wine.jpg",
+      "workId": "work-136",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "34b4b096bc104f0248d6c83257dbb9e5784c5937f1f88da4ef0b6951ce94b660",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/paste",
+      "relativePath": "formulas/dosage-forms/paste.jpg",
+      "workId": "work-134",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "d0ca4835cbe426d5e73acdd52ccda9e7e125e11d096ede8c82936e28c429f2cc",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/pill",
+      "relativePath": "formulas/dosage-forms/pill.jpg",
+      "workId": "work-132",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "53274a6a0932b248ce4aac3a61752437ae9fa68ab1aff4a5529d5e60cbb4bde3",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "formulas/dosage-forms/powder",
+      "relativePath": "formulas/dosage-forms/powder.jpg",
+      "workId": "work-133",
+      "category": "formulas",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "574309d76de4ce5c80a846f72a32387662f18dadcbdf53fa02d1b7cb7c7fa543",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13-formula-dosage-forms"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/external-route",
+      "relativePath": "gallbladder-meridian/external-route.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "6bbb0b66aea2a3cd40e5ae5053f23168b5a0dd68243eda66ce88543fa7f552b2",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/external-route-alt",
+      "relativePath": "gallbladder-meridian/external-route-alt.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "154ada3557eef00674c12d7906c462b7443240ea27a7532b77fbe3fd507a6288",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/internal-route",
+      "relativePath": "gallbladder-meridian/internal-route.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "b84640ca295e0c38a59266db0978fb163ba8a593fef182f03f4f87d7a98bccce",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-1",
+      "relativePath": "gallbladder-meridian/local-points-1.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "7f1ae773c5c3a551ad2d7c8640bc786cb9d1fd26b7095445fd667865af5a511a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-2",
+      "relativePath": "gallbladder-meridian/local-points-2.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "0f77719c8738d41143590a7b380789678aaa2ed7980dc67628b3ff741141b685",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-3",
+      "relativePath": "gallbladder-meridian/local-points-3.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "545c6d053c96bfd5c8c60f8af1530c72f91d54154080eabfb0509e4f2a15fa5d",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-4",
+      "relativePath": "gallbladder-meridian/local-points-4.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "664195179b375ad068fb4d03bc423ee5eddf218bdb734df430ba7bf49f9e2541",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-5",
+      "relativePath": "gallbladder-meridian/local-points-5.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "c092616b79f834d7da4a379ac02085f6652c0a77cf095226737521722d10b6af",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-6",
+      "relativePath": "gallbladder-meridian/local-points-6.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "faa25100467d83b89f80d5605791de817e2838d85f6f0f545178568396a8b517",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-7",
+      "relativePath": "gallbladder-meridian/local-points-7.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "5e68a00666d6bc893f74915468c995fe659e0b08024bbeb41c3370d080de2419",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "gallbladder-meridian/local-points-8",
+      "relativePath": "gallbladder-meridian/local-points-8.jpg",
+      "workId": "work-011",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "e8a6e929bde6bfd7e889992be9b2db5c5499d08db30121f5eb7f5a0f6886d80c",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "heart-meridian/external-route",
+      "relativePath": "heart-meridian/external-route.jpg",
+      "workId": "work-005",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "dd1a52b253c69da3d2e78a5461a8dfab898c7433100befd986c64224f0aeca0e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "heart-meridian/internal-detail",
+      "relativePath": "heart-meridian/internal-detail.jpg",
+      "workId": "work-005",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "473093993f46b62f1640933969bc0b04f0dcec51c6a99e2b50c9b331bb16a50b",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "heart-meridian/internal-route",
+      "relativePath": "heart-meridian/internal-route.jpg",
+      "workId": "work-005",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "04b79881bc82d76a63d83b6395496e517793aa45ae4de209cc8aa4b4e0f24854",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "heart-meridian/local-points-1",
+      "relativePath": "heart-meridian/local-points-1.jpg",
+      "workId": "work-005",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "8a91fa30653bc56a1e9704b0109da5defc61f33b7068910ad031b9999d3ecbb9",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "heart-meridian/local-points-2",
+      "relativePath": "heart-meridian/local-points-2.jpg",
+      "workId": "work-005",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "bb56ece4f2ff93fabd80fe895f5230e7a7eed8f8d4b115afbe770a0819188a70",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/angelica-dahurica",
+      "relativePath": "herbs/wind-cold/angelica-dahurica.jpg",
+      "workId": "work-102",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "2b5c89dbe1b39fe393b8ed0d95258f13fe061a0066f79ae0307bbfbcdb5b4c9b",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/asarum",
+      "relativePath": "herbs/wind-cold/asarum.jpg",
+      "workId": "work-114",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "2b222d89bd7314a3afd5928910d5f82ff04a0b788eec652a0ad61ac8f8cd9797",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/centipeda",
+      "relativePath": "herbs/wind-cold/centipeda.jpg",
+      "workId": "work-104",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "6947cfdce13195da0b514793dc9d7ec70749d541f29e7c91595bf9fe2ce2417d",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/cinnamon-twig",
+      "relativePath": "herbs/wind-cold/cinnamon-twig.jpg",
+      "workId": "work-108",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "6e76cf6136daa84bcb91d19c680059dfe77e3726fad85edb7e2a99d8a0f68f27",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/coriander",
+      "relativePath": "herbs/wind-cold/coriander.jpg",
+      "workId": "work-109",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "7631d1c761ea0948e7b8758fd29046a920aea22f69d8b69d2966b78b7cba7f59",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/ephedra",
+      "relativePath": "herbs/wind-cold/ephedra.jpg",
+      "workId": "work-111",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "d15cc0de115d408c1c883528964f0e7cb6687fcad8fa3d46678f4807a32ea5ff",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/fresh-ginger",
+      "relativePath": "herbs/wind-cold/fresh-ginger.jpg",
+      "workId": "work-113",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "39333b77bdc6ddb701186ed162e5c3f4d0fd156ac0116573c86366de1b2b7a6d",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/ligusticum",
+      "relativePath": "herbs/wind-cold/ligusticum.jpg",
+      "workId": "work-106",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "92f35e16547136fb8371086e00e4dfb088a22801f340f291e9ab5829eedc3ec2",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/magnolia-flower",
+      "relativePath": "herbs/wind-cold/magnolia-flower.jpg",
+      "workId": "work-116",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "228d7c4965baabc07fb85208f40c0febd4cf684b6c8213ff12d3c8a32afecdeb",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/mosla",
+      "relativePath": "herbs/wind-cold/mosla.jpg",
+      "workId": "work-115",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "f292d617ecdbd38debdc904d13c6b8f9f6f46046f9ed21815351d71f97b1eb5f",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/notopterygium",
+      "relativePath": "herbs/wind-cold/notopterygium.jpg",
+      "workId": "work-112",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "01f8349fada030091241310a30481e2ed5fcdfeacd0c9cec1aeeb0e0e47cffe6",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/perilla",
+      "relativePath": "herbs/wind-cold/perilla.jpg",
+      "workId": "work-117",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "f51442ea5ca27dc559f84cb6bc653eca01a9abe795279cc1afdac779ddc73f49",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/saposhnikovia",
+      "relativePath": "herbs/wind-cold/saposhnikovia.jpg",
+      "workId": "work-105",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "7d297bf22665599a9d610ef69c16ddf7d355c2bb77bb391940c809687ddee17a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/scallion-stalk",
+      "relativePath": "herbs/wind-cold/scallion-stalk.jpg",
+      "workId": "work-103",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "eb158e5fc969bc80d03a2771525eac7f1aa201058dd44fb2d3de76ba33b80e07",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/schizonepeta",
+      "relativePath": "herbs/wind-cold/schizonepeta.jpg",
+      "workId": "work-110",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "9b264eed205de889aaab1d1795afb41ab8183fb4e4338bbadad5f15ee12ca506",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/tamarisk",
+      "relativePath": "herbs/wind-cold/tamarisk.jpg",
+      "workId": "work-107",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "c544a8d4dba9a71d43c61db05775777b5557a692244e3b7840bdcca90b90821b",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-cold/xanthium",
+      "relativePath": "herbs/wind-cold/xanthium.jpg",
+      "workId": "work-101",
+      "category": "herbs",
+      "sourceType": "clean-source-preserved",
+      "sourceSha256": "3cd24e13a6d899b2bead7bec92f04c27ec6371128c99b1b43b4f266ef217abd8",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "preserve-existing-mesh",
+      "visibleWatermarkSource": "source-existing-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/arctium-fruit",
+      "relativePath": "herbs/wind-heat/arctium-fruit.jpg",
+      "workId": "work-119",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "d1781ecf9888185626aac6ae17ef7344db8f79d17f1a5064410562f362089d1e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/bupleurum-root",
+      "relativePath": "herbs/wind-heat/bupleurum-root.jpg",
+      "workId": "work-124",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "43ce88fa9de4f8b3274638f6798ef98b498819cf3b5f628166e32209a6e0172e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/chrysanthemum-flower",
+      "relativePath": "herbs/wind-heat/chrysanthemum-flower.jpg",
+      "workId": "work-122",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "7d2e73e944abca19e285d9f550390a0c46cb6cd584094bafec7b6e6daf7118c5",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/cicada-slough",
+      "relativePath": "herbs/wind-heat/cicada-slough.jpg",
+      "workId": "work-120",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "dfbe07bfd9bfd955092ace3b118774d188cf7792f2e91da28dffb658d6558d71",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/cimicifuga-rhizome",
+      "relativePath": "herbs/wind-heat/cimicifuga-rhizome.jpg",
+      "workId": "work-125",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "e76fe498564f68ca3cd918b56b70daa225d39c59ef7a73327365c73743483a58",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/duckweed-herb",
+      "relativePath": "herbs/wind-heat/duckweed-herb.jpg",
+      "workId": "work-128",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "954220d135d544c6bf13da77dc7baaa50cab7fdb52aa2958d683b61825241726",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/equisetum-stem",
+      "relativePath": "herbs/wind-heat/equisetum-stem.jpg",
+      "workId": "work-129",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "1ea8b18c4130bcb24cefeb76840e975cc4bce5388ee29388b514cd0915d8b709",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/eriocaulon-flower",
+      "relativePath": "herbs/wind-heat/eriocaulon-flower.jpg",
+      "workId": "work-130",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "93c62e1d40111fee7db27b193a9ff6fb0f3fefb45900fc7ed6f4d74eba2f271c",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/mint-herb",
+      "relativePath": "herbs/wind-heat/mint-herb.jpg",
+      "workId": "work-118",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "9a82948fb56ebee7c119187da62edf75617dbf7dc87ef5adc02a850b669af7bc",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/mulberry-leaf",
+      "relativePath": "herbs/wind-heat/mulberry-leaf.jpg",
+      "workId": "work-121",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "89ce9051367e1424a60cc9d499cf5f6fd6863e734cb39c12fa1df75408063bd9",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/prepared-soybean",
+      "relativePath": "herbs/wind-heat/prepared-soybean.jpg",
+      "workId": "work-127",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "4663cc7ad196a75d5cd0ab6be1f1808fdbfc0973e9869e5b8c60f0e20e083769",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/pueraria-root",
+      "relativePath": "herbs/wind-heat/pueraria-root.jpg",
+      "workId": "work-126",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "f10d634cc92147227e103180f38f9480d2d0122f62616a34f6d6b0227deec872",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "herbs/wind-heat/vitex-fruit",
+      "relativePath": "herbs/wind-heat/vitex-fruit.jpg",
+      "workId": "work-123",
+      "category": "herbs",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "53b9cb5b2be19fc02d7acd92953c54d982d9ecca392db0c2c7b0924603714e83",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-batch-2026-07-13"
+      }
+    },
+    {
+      "id": "kidney-meridian/external-route",
+      "relativePath": "kidney-meridian/external-route.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "f27ee3efbf729fac6900c2e02b6e94aeaa2bb72553f8a18578d2601f5bfcc7a1",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "kidney-meridian/internal-route",
+      "relativePath": "kidney-meridian/internal-route.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "f52c7741dfb3e194a3a3957c30388623c918232183f42e3fad2b42bfc38344fa",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "kidney-meridian/local-anatomy-1",
+      "relativePath": "kidney-meridian/local-anatomy-1.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "5de26a5ba6fe755473515c6955b55948d2aa447aed9d8756e73f78acf3684ab1",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "kidney-meridian/local-anatomy-2",
+      "relativePath": "kidney-meridian/local-anatomy-2.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "e5e8eaaf7865edc96c97959c716f5440cce9208ca31f59853f59648d43886203",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "kidney-meridian/local-points-3",
+      "relativePath": "kidney-meridian/local-points-3.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "85e4a778f1286950b3a5fb2ba4c9af0dd297f13c20cee46b3fac632bfa9607fa",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "kidney-meridian/local-points-4",
+      "relativePath": "kidney-meridian/local-points-4.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "a482dd400a6f4fb08e64218fec0204d0100e111406d64befdd827043bb628cca",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "kidney-meridian/surface-route",
+      "relativePath": "kidney-meridian/surface-route.jpg",
+      "workId": "work-008",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "75e222994f13c351a3cd07d099a76622d4caf9b02fff82b5f930b47fb17c18e5",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/external-route",
+      "relativePath": "large-intestine-meridian/external-route.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "991d10009ee252eb4d583281061c5c0d4f626b4036d82e7c1050f32789067e21",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/internal-route",
+      "relativePath": "large-intestine-meridian/internal-route.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "04270d115d0fed7f38afe9e35bfbb9094e2a2ab545b255ed56365b811ba6145d",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/local-points-1",
+      "relativePath": "large-intestine-meridian/local-points-1.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "cb316b104b7d46de73b0c55ad628c1e2780d32f36186513175ffcaa7164a3653",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/local-points-2",
+      "relativePath": "large-intestine-meridian/local-points-2.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "fdf065561dab20491254b98856745855a55274363b3bb2f25ecfe52a5b4cd179",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/local-points-3",
+      "relativePath": "large-intestine-meridian/local-points-3.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "1dd8b81cd9bb9a689e9c56499d0c82f62e44b654b3da83691013a0574af6913b",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/local-points-4",
+      "relativePath": "large-intestine-meridian/local-points-4.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "9fead1abd288a83601651e3900b879715fd3258a1f5344ea061cc2f651d3830a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "large-intestine-meridian/local-points-5",
+      "relativePath": "large-intestine-meridian/local-points-5.jpg",
+      "workId": "work-002",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "89abb17ac970f14ab643f746bbede302a0a9720d19de01e3c27425460f3743ad",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/external-route",
+      "relativePath": "liver-meridian/external-route.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "68132be0e542a534f994c387d1d68e2b26e945e01748d17dc0fa212192190e4b",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/internal-route",
+      "relativePath": "liver-meridian/internal-route.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "6a33d08a1c6a6e0239e0711aaae9f1bafb927c6e933905a2371b8dc7c62aac11",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/local-points-1",
+      "relativePath": "liver-meridian/local-points-1.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "c8c3ed76a0cc3ecf994f57dfda6b526fd742167d9f4858bf8d616d991abc473c",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/local-points-2",
+      "relativePath": "liver-meridian/local-points-2.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "f2c9db22001dfbe900efec3d4a6e6b814967f376814d1d121f7ae3539d7db067",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/local-points-3",
+      "relativePath": "liver-meridian/local-points-3.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "75343238844223dcad8804d4c312b4c6373a1a054d7f3842fa8cea9ad4f31b75",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/local-points-4",
+      "relativePath": "liver-meridian/local-points-4.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "e65bffffc4e3344970cbf001480ee833f5236229ab38fade7231e2f713008219",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "liver-meridian/surface-internal-route",
+      "relativePath": "liver-meridian/surface-internal-route.jpg",
+      "workId": "work-012",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "9f50f4c746b84f4130592c7743ebc0c61bf9129e6d8184dfd5a33d0333348c3e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "lung-meridian/external-route",
+      "relativePath": "lung-meridian/external-route.jpg",
+      "workId": "work-001",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "e9392e45245da4ae761df0442bf5b7019eedada006fb5a703c6e476494be31dd",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "lung-meridian/internal-route",
+      "relativePath": "lung-meridian/internal-route.jpg",
+      "workId": "work-001",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "bc7eab0e90d5dc75d1c294bc25fc7673c0af966f63df6f009042d764ef6ad92a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "lung-meridian/local-points-forearm",
+      "relativePath": "lung-meridian/local-points-forearm.jpg",
+      "workId": "work-001",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "0fb81f05b5f24d4e353493766c5cdf7ac2f458b45a6efdbf50e873328135e8c1",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "lung-meridian/local-points-shoulder",
+      "relativePath": "lung-meridian/local-points-shoulder.jpg",
+      "workId": "work-001",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "1949ecb0085bf9329cd620ed4a977aef6e00b28c83af95123316b6ceb3ea046a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "nine-needles-atlas",
+      "relativePath": "nine-needles-atlas.jpg",
+      "workId": "work-015",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "5b72f6c48b82ad673e7502d9b320367384dcbe69e10b06a050294e913373e017",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "user-provided-local-replacement-2026-07-13-nine-needles-watermarked"
+      }
+    },
+    {
+      "id": "pericardium-meridian/external-route",
+      "relativePath": "pericardium-meridian/external-route.jpg",
+      "workId": "work-009",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "25a4a5abe489ad8a8ead0dc684da76ce1beb7516f6ab18d141b10bd7b6ebaf39",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "pericardium-meridian/internal-route",
+      "relativePath": "pericardium-meridian/internal-route.jpg",
+      "workId": "work-009",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "49ed4bd79135cbe1aeb560811937c1ce7a888b5a799f55f4af3078d0f6d76913",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "pericardium-meridian/local-points-1",
+      "relativePath": "pericardium-meridian/local-points-1.jpg",
+      "workId": "work-009",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "36ec0c399b206bc266d9e9ca1eba385ad3405c76137713a1c155febd7ff8699e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "pericardium-meridian/local-points-2",
+      "relativePath": "pericardium-meridian/local-points-2.jpg",
+      "workId": "work-009",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "b9a52c0fc05506c7397c0252760f2b702fb9e9df1a31cac42bc0a6e87be3fb3d",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "ren-meridian/external-route",
+      "relativePath": "ren-meridian/external-route.jpg",
+      "workId": "work-013",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "8db8660838049e0a5ebe046836d16fd863c7a116dc2af0791614337d82094858",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "ren-meridian/internal-route",
+      "relativePath": "ren-meridian/internal-route.jpg",
+      "workId": "work-013",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "a84b06963030a88e83eafef7119f22f6a903a2dec50563bab555bb78205f18a0",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "ren-meridian/local-points-1",
+      "relativePath": "ren-meridian/local-points-1.jpg",
+      "workId": "work-013",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "dd955b245d4163aceb7f79c8635375d341a11632d7d50cbdecfd4f9ea8a8b0ff",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "ren-meridian/local-points-2",
+      "relativePath": "ren-meridian/local-points-2.jpg",
+      "workId": "work-013",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "28adf161c40d05f003abf9bb3ce383e9afc613320c4dc37465b6677837fdb109",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "ren-meridian/local-points-3",
+      "relativePath": "ren-meridian/local-points-3.jpg",
+      "workId": "work-013",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "2c3a2030d27e917d9047f740bc1197ef96d53b28dae9b96ce6a40bb4d959249e",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "sanjiao-meridian/external-route",
+      "relativePath": "sanjiao-meridian/external-route.jpg",
+      "workId": "work-010",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "351db188fa249e547b38fa7184c687bff42d83f956098d5c85943e9bb3cfbb35",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "sanjiao-meridian/internal-route",
+      "relativePath": "sanjiao-meridian/internal-route.jpg",
+      "workId": "work-010",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "f53cb8fe70f7c2a41cd0eff74e9bddf58cb8185e1ca423135f06a8a12c0b42d7",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "sanjiao-meridian/local-points-1",
+      "relativePath": "sanjiao-meridian/local-points-1.jpg",
+      "workId": "work-010",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "227307f302678d3d57fb88d66d6d58b2dc10de05976be8ec5d4bc4bd6814ba19",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "sanjiao-meridian/local-points-2",
+      "relativePath": "sanjiao-meridian/local-points-2.jpg",
+      "workId": "work-010",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "aed4b7a42f2520c5be40abee7e9a35cf7a5ed389f75d5d2e84261153d5c15c3c",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "sanjiao-meridian/local-points-3",
+      "relativePath": "sanjiao-meridian/local-points-3.jpg",
+      "workId": "work-010",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "8a40b6f92d50ac29dc3d487c69e6db20b118c6f51b9e8b8ace857c0f552ac4b7",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/external-route",
+      "relativePath": "small-intestine-meridian/external-route.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "f7b64778263d51383f2100b89f538978096486fad5556a28157d26c075744670",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/internal-route",
+      "relativePath": "small-intestine-meridian/internal-route.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "c1341ec4bbe0a91df9fa29fb831c06c2e03e4c36f596fb715a7b8227fdebb658",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/local-points-1",
+      "relativePath": "small-intestine-meridian/local-points-1.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "32bdd6752f280bfa39bcd6d63c66a567f3a3f71c40d795ed7ae4a63c2e8970c1",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/local-points-2",
+      "relativePath": "small-intestine-meridian/local-points-2.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "dc6e72ba898fc328c60ee05df82a68955508f01045d1607ac8655df2f6f22a41",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/local-points-3",
+      "relativePath": "small-intestine-meridian/local-points-3.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "9050ab916ed5270d163608633121a090a1a3b420735555f63fac14f847e5a1dc",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/local-points-4",
+      "relativePath": "small-intestine-meridian/local-points-4.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "728a0d7c56b4a55079f512516d1256717b92f23608a59eba685a7fc018f853b4",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/local-points-5",
+      "relativePath": "small-intestine-meridian/local-points-5.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "01d1226cb1384a344ea65937cceef8182a47e752c554694abff66a8eea14a4d5",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "small-intestine-meridian/local-points-7",
+      "relativePath": "small-intestine-meridian/local-points-7.jpg",
+      "workId": "work-006",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "132d4990040bca1e6eda0d775173850178f3c23b4fd10fa1a43458cbcbf170d2",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "spleen-meridian/external-route",
+      "relativePath": "spleen-meridian/external-route.jpg",
+      "workId": "work-004",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "4885cda21d7227cafd27a28b30b296f89a5ac19069c7018a4317c17ff2c61b4a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "spleen-meridian/internal-route",
+      "relativePath": "spleen-meridian/internal-route.jpg",
+      "workId": "work-004",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "12d1a3fb3d5ffc678debc5f06af5631ecb8dca3cc8cb2bf1ae2372a21634e8bc",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "spleen-meridian/local-points-1",
+      "relativePath": "spleen-meridian/local-points-1.jpg",
+      "workId": "work-004",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "b558dc47dc731176dd43596732f31e70aad41155ec0223990b4ed2919ff1e27a",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "spleen-meridian/local-points-2",
+      "relativePath": "spleen-meridian/local-points-2.jpg",
+      "workId": "work-004",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "590ae4e8f29799a5895131fc05c0f3b7e47a68b5195dd3685e37ee48af4eb227",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "spleen-meridian/local-points-3",
+      "relativePath": "spleen-meridian/local-points-3.jpg",
+      "workId": "work-004",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "0b58c07a47c7ef8b0c5394c06e5d4339c73641bbcce6962ddfbb8473f396797d",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "spleen-meridian/local-points-4",
+      "relativePath": "spleen-meridian/local-points-4.jpg",
+      "workId": "work-004",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "74112ed91723e77bedf488d10df0b95015d03bd46a83efe01a795105c6207b98",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/external-route",
+      "relativePath": "stomach-meridian/external-route.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "d0de9e83e77addb2d656103af22687cd5cec90c1c7769ac6bee0fa2632aef511",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/internal-route",
+      "relativePath": "stomach-meridian/internal-route.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "044b4087d2f73ba38f155815fbca3199d66cba19378344dd213b5390447a5b2c",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-1",
+      "relativePath": "stomach-meridian/local-points-1.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "e3a0f5f94279198ab092e64f418458893397411d18036aac53ee0217237421c7",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-2",
+      "relativePath": "stomach-meridian/local-points-2.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "bdaa919b16f0f86109e956e53da9fac4d508cdaafd342e374b7bdff5391a4aef",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-3",
+      "relativePath": "stomach-meridian/local-points-3.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "0edc2f0389f097cd78e3be44beaacb8edd1b657b3088d2aecbaf9f8c64cb7323",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-4",
+      "relativePath": "stomach-meridian/local-points-4.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "a79e4ae08a88347c122292d35f8f9428d64f18cf99270896c4ef84d947c4bbb0",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-5",
+      "relativePath": "stomach-meridian/local-points-5.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "b49afb49ade2aa6e4a2ff1fa16dec05eca06dfaf11fa23ab4c7d1d5122cb24ab",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-6",
+      "relativePath": "stomach-meridian/local-points-6.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "2ddbee24d6a8ae5c093e38daac30f673e814207c1ae7d529dd3799b9e0ea7041",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    },
+    {
+      "id": "stomach-meridian/local-points-7",
+      "relativePath": "stomach-meridian/local-points-7.jpg",
+      "workId": "work-003",
+      "category": "meridians",
+      "sourceType": "user-provided-watermarked",
+      "sourceSha256": "80658c6f79764ed0cf582f71d8ab10eabd7693d12398c73223224ef1a9382f61",
+      "sourceReviewStatus": "approved",
+      "publicReleaseStatus": "approved",
+      "visibleWatermarkPolicy": "provided-mesh",
+      "visibleWatermarkSource": "user-provided-tiled-xqy-mesh",
+      "variants": [
+        "thumbnail",
+        "preview"
+      ],
+      "review": {
+        "status": "approved",
+        "evidence": "v1.0-private-import-record"
+      }
+    }
+  ]
+}

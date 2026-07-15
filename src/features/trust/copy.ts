@@ -149,10 +149,6 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
           answer: "不可以。网页预览图仅供浏览与作品选择，下载、转载、修改或用于公开项目均需要取得相应许可。",
         },
         {
-          question: "授权是否包含PSD或其他源文件？",
-          answer: "默认不包含。是否交付 PSD、分层文件或其他源文件，需要根据项目需求、作品条件与交付范围单独约定。",
-        },
-        {
           question: "授权期限届满后如何续期？",
           answer: "请在期限届满前联系确认原授权范围、继续使用的期限及是否存在渠道或项目变化，再办理续期。",
         },
@@ -202,7 +198,7 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
       title: "联系与交流",
       lede: "请根据就诊联系、学习交流或授权合作等不同需求，选择对应的联系方式。为保护个人隐私，请勿通过公开渠道发送病历、检查单及其他敏感信息。",
       context: "就诊联系 · 内容交流 · 授权合作",
-      workLabel: "关联作品编号",
+      workLabel: "关联作品",
       consultationTitle: "就诊联系",
       consultationIntro: "如需了解出诊安排或预约到诊，可先通过电话联系。电话仅用于确认时间、地点及基本事项，不提供远程诊断与处方服务。",
       consultationBoundaryTitle: "到诊说明",
@@ -231,8 +227,8 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
       channelEmpty: "当前没有可公开的联系渠道。",
     },
     workReference: {
-      title: "已带入作品编号",
-      description: "联系时请保留该编号，便于确认具体作品与使用范围。",
+      title: "已带入关联作品",
+      description: "联系时请保留该作品名称或编号，便于确认具体作品与使用范围。",
     },
   },
   "zh-Hant": {
@@ -285,10 +281,6 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
           answer: "不可以。網頁預覽圖僅供瀏覽與作品選擇，下載、轉載、修改或用於公開項目均需要取得相應許可。",
         },
         {
-          question: "授權是否包含 PSD 或其他源文件？",
-          answer: "默認不包含。是否交付 PSD、分層文件或其他源文件，需要依項目需求、作品條件與交付範圍單獨約定。",
-        },
-        {
           question: "授權期限屆滿後如何續期？",
           answer: "請在期限屆滿前聯絡確認原授權範圍、繼續使用的期限及是否存在渠道或項目變化，再辦理續期。",
         },
@@ -338,7 +330,7 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
       title: "聯絡與交流",
       lede: "請依就診聯絡、學習交流或授權合作等不同需求，選擇相應的聯絡方式。為保護個人私隱，請勿透過公開渠道發送病歷、檢查單及其他敏感資訊。",
       context: "就診聯絡 · 內容交流 · 授權合作",
-      workLabel: "關聯作品編號",
+      workLabel: "關聯作品",
       consultationTitle: "就診聯絡",
       consultationIntro: "如需瞭解出診安排或預約到診，可先透過電話聯絡。電話僅用於確認時間、地點及基本事項，不提供遠程診斷與處方服務。",
       consultationBoundaryTitle: "到診說明",
@@ -367,8 +359,8 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
       channelEmpty: "目前沒有可公開的聯絡渠道。",
     },
     workReference: {
-      title: "已帶入作品編號",
-      description: "聯絡時請保留該編號，便於確認具體作品與使用範圍。",
+      title: "已帶入關聯作品",
+      description: "聯絡時請保留該作品名稱或編號，便於確認具體作品與使用範圍。",
     },
   },
   en: {
@@ -419,10 +411,6 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
         {
           question: "Can I download and use a website preview?",
           answer: "No. Website previews are for browsing and work selection only. Downloading, republication, alteration, or public use requires permission.",
-        },
-        {
-          question: "Does a licence include PSD or other source files?",
-          answer: "Not by default. PSD, layered, or other source files must be agreed separately according to the project, the work, and the delivery scope.",
         },
         {
           question: "How do I renew an expired licence?",
@@ -503,7 +491,7 @@ export const TRUST_COPY: Record<Locale, TrustCopy> = {
       channelEmpty: "There are currently no public contact channels.",
     },
     workReference: {
-      title: "Work reference included",
+      title: "Related work included",
       description: "Keep this reference in your message so the work and intended scope can be identified.",
     },
   },

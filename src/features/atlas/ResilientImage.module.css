@@ -37,6 +37,10 @@
   cursor: zoom-in;
 }
 
+.action[aria-pressed="true"] {
+  cursor: zoom-out;
+}
+
 .frame[data-loaded] .image {
   opacity: 1;
 }

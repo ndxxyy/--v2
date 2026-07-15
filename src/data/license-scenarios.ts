@@ -10,22 +10,22 @@ export const licenseScenarios: readonly LicenseScenario[] = [
     },
     summary: {
       "zh-CN": "用于个人收藏、学习参考与非公开研究，不包含传播、转载及商业使用。",
-      "zh-Hant": "用於個人、非商業的學習筆記與自學材料。",
-      en: "For personal, non-commercial study notes and learning materials.",
+      "zh-Hant": "用於個人收藏、學習參考與非公開研究，不包含傳播、轉載及商業使用。",
+      en: "For personal collection, study reference, and non-public research. Does not include distribution, republication, or commercial use.",
     },
     terms: {
       "zh-CN": [
         {
           type: "list",
           style: "unordered",
-          items: ["作品名称或编号", "所需尺寸与文件规格", "个人学习用途说明"],
+          items: ["作品名称或编号", "所需图片范围", "个人学习用途说明"],
         },
       ],
       "zh-Hant": [
         {
           type: "list",
           style: "unordered",
-          items: ["說明所需作品", "說明使用載體", "不得轉售或再次分發"],
+          items: ["作品名稱或編號", "所需圖片範圍", "個人學習用途說明"],
         },
       ],
       en: [
@@ -33,9 +33,9 @@ export const licenseScenarios: readonly LicenseScenario[] = [
           type: "list",
           style: "unordered",
           items: [
-            "Identify the work required",
-            "Describe how it will be used",
-            "No resale or redistribution",
+            "Work name or reference",
+            "Required image range",
+            "Personal-study purpose",
           ],
         },
       ],
@@ -52,8 +52,8 @@ export const licenseScenarios: readonly LicenseScenario[] = [
     },
     summary: {
       "zh-CN": "用于诊所、医馆及相关专业空间内的固定展示与患者科普。",
-      "zh-Hant": "用於診室、診所或相關空間內的固定展示與溝通輔助。",
-      en: "For fixed display and communication support in a clinic or consultation space.",
+      "zh-Hant": "用於診所、醫館及相關專業空間內的固定展示與患者科普。",
+      en: "For fixed display and patient education in clinics, Chinese medicine practices, and related professional spaces.",
     },
     terms: {
       "zh-CN": [
@@ -67,7 +67,7 @@ export const licenseScenarios: readonly LicenseScenario[] = [
         {
           type: "list",
           style: "unordered",
-          items: ["說明展示地點與數量", "確認成品尺寸", "不包含二次傳播權限"],
+          items: ["作品編號與展示數量", "使用場所及展示形式", "所需尺寸與文件規格"],
         },
       ],
       en: [
@@ -75,9 +75,9 @@ export const licenseScenarios: readonly LicenseScenario[] = [
           type: "list",
           style: "unordered",
           items: [
-            "State the display location and quantity",
-            "Confirm the finished size",
-            "Does not include redistribution rights",
+            "Work references and display quantity",
+            "Premises and display format",
+            "Required dimensions and file specifications",
           ],
         },
       ],
@@ -94,8 +94,8 @@ export const licenseScenarios: readonly LicenseScenario[] = [
     },
     summary: {
       "zh-CN": "用于线下授课、学术讲座、培训课程及内部教学材料。",
-      "zh-Hant": "用於課件、講義或講座現場展示，按課程範圍確認授權。",
-      en: "For courseware, handouts, or live presentations, licensed to the agreed teaching scope.",
+      "zh-Hant": "用於線下授課、學術講座、培訓課程及內部教學材料。",
+      en: "For in-person teaching, academic lectures, training courses, and internal teaching materials.",
     },
     terms: {
       "zh-CN": [
@@ -109,7 +109,7 @@ export const licenseScenarios: readonly LicenseScenario[] = [
         {
           type: "list",
           style: "unordered",
-          items: ["說明課程形式與受眾", "說明場次與傳播範圍", "錄播與講義分發另行確認"],
+          items: ["課程主題與舉辦單位", "使用作品及展示方式", "授課次數與參與規模"],
         },
       ],
       en: [
@@ -117,9 +117,9 @@ export const licenseScenarios: readonly LicenseScenario[] = [
           type: "list",
           style: "unordered",
           items: [
-            "Describe the course format and audience",
-            "State the number of sessions and distribution scope",
-            "Recording and handout distribution require separate agreement",
+            "Course topic and host organisation",
+            "Works used and display method",
+            "Number of sessions and audience size",
           ],
         },
       ],
@@ -136,8 +136,8 @@ export const licenseScenarios: readonly LicenseScenario[] = [
     },
     summary: {
       "zh-CN": "用于公众号、小红书、抖音及其他媒体账号中的科普内容与视觉呈现。",
-      "zh-Hant": "用於已說明帳號與平台的圖文、影片或科普內容。",
-      en: "For posts, videos, or educational content on the agreed account and platform.",
+      "zh-Hant": "用於公眾號、小紅書、抖音及其他媒體帳號中的科普內容與視覺呈現。",
+      en: "For educational content and visual presentation on WeChat Official Accounts, Xiaohongshu, Douyin, and other media accounts.",
     },
     terms: {
       "zh-CN": [
@@ -151,7 +151,7 @@ export const licenseScenarios: readonly LicenseScenario[] = [
         {
           type: "list",
           style: "unordered",
-          items: ["說明發佈平台與帳號", "說明預計發佈次數", "不得上傳至素材平台"],
+          items: ["發佈平台與帳號名稱", "使用作品及發佈數量", "內容形式與預計發佈時間", "是否涉及品牌推廣或商業合作"],
         },
       ],
       en: [
@@ -159,9 +159,10 @@ export const licenseScenarios: readonly LicenseScenario[] = [
           type: "list",
           style: "unordered",
           items: [
-            "State the publishing platform and account",
-            "State the expected number of posts",
-            "No upload to stock-asset platforms",
+            "Publishing platform and account name",
+            "Works used and publishing quantity",
+            "Content format and expected publication date",
+            "Whether brand promotion or commercial cooperation is involved",
           ],
         },
       ],
@@ -178,8 +179,8 @@ export const licenseScenarios: readonly LicenseScenario[] = [
     },
     summary: {
       "zh-CN": "用于图书、期刊、文创产品、商品包装、品牌宣传及其他商业项目。",
-      "zh-Hant": "用於出版物、品牌內容、商品或其他商業傳播項目。",
-      en: "For publications, brand content, products, and other commercial distribution.",
+      "zh-Hant": "用於圖書、期刊、文創產品、商品包裝、品牌宣傳及其他商業項目。",
+      en: "For books, journals, cultural products, product packaging, brand promotion, and other commercial projects.",
     },
     terms: {
       "zh-CN": [
@@ -193,7 +194,7 @@ export const licenseScenarios: readonly LicenseScenario[] = [
         {
           type: "list",
           style: "unordered",
-          items: ["說明項目與使用媒介", "說明印量、地區與期限", "交付規格與署名方式書面確認"],
+          items: ["項目名稱與合作主體", "使用作品、數量及範圍", "發行數量與傳播渠道", "文件規格與交付要求", "授權地區與使用期限"],
         },
       ],
       en: [
@@ -201,9 +202,11 @@ export const licenseScenarios: readonly LicenseScenario[] = [
           type: "list",
           style: "unordered",
           items: [
-            "Describe the project and media",
-            "State print run, territory, and term",
-            "Confirm delivery and credit terms in writing",
+            "Project name and contracting party",
+            "Works, quantity, and scope of use",
+            "Production quantity and distribution channels",
+            "File specifications and delivery requirements",
+            "Licensed territory and term",
           ],
         },
       ],
@@ -220,8 +223,8 @@ export const licenseScenarios: readonly LicenseScenario[] = [
     },
     summary: {
       "zh-CN": "根据项目主题、内容边界与交付需求，提供具有“小钟岐医”视觉风格的定制创作。",
-      "zh-Hant": "按明確主題、內容邊界和交付要求評估的定製圖譜創作。",
-      en: "Commissioned atlas work assessed against a defined topic, content boundary, and deliverable.",
+      "zh-Hant": "根據項目主題、內容邊界與交付需求，提供具有「小鐘岐醫」視覺風格的定製創作。",
+      en: "Commissioned work in the Xiao Zhong Qi Yi visual style, shaped around the project topic, content boundaries, and delivery requirements.",
     },
     terms: {
       "zh-CN": [
@@ -235,7 +238,7 @@ export const licenseScenarios: readonly LicenseScenario[] = [
         {
           type: "list",
           style: "unordered",
-          items: ["說明主題與資料基礎", "說明尺寸與交付用途", "排期與修改範圍另行確認"],
+          items: ["項目背景與創作主題", "內容要求與參考資料", "作品數量與使用渠道", "文件規格與交付時間", "預算範圍與修改需求"],
         },
       ],
       en: [
@@ -243,9 +246,11 @@ export const licenseScenarios: readonly LicenseScenario[] = [
           type: "list",
           style: "unordered",
           items: [
-            "Describe the topic and source material",
-            "State the size and intended use",
-            "Schedule and revision scope are agreed separately",
+            "Project background and creative topic",
+            "Content requirements and reference material",
+            "Number of works and use channels",
+            "File specifications and delivery date",
+            "Budget range and revision requirements",
           ],
         },
       ],

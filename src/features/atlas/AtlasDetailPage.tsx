@@ -1,9 +1,11 @@
 import Link from "next/link";
+import type { Route } from "next";
 
 import { Notice } from "@/components/ui";
 import type { Locale } from "@/i18n/config";
 
 import { AtlasGallery } from "./AtlasGallery";
+import { AtlasRightsNotice } from "./AtlasRightsNotice";
 import { ATLAS_COPY } from "./copy";
 import { ResilientImage } from "./ResilientImage";
 import type { AtlasDetailData } from "./selectors";
@@ -16,18 +18,24 @@ interface AtlasDetailPageProps {
 
 export function AtlasDetailPage({ locale, work }: AtlasDetailPageProps) {
   const copy = ATLAS_COPY[locale].detail;
-  const workReference = work.code ?? work.id;
+  const workReference = work.code ?? work.title;
   const query = `work=${encodeURIComponent(workReference)}`;
+  const herbClassification = work.herbTaxonPath
+    ?.map((taxon) => taxon.name)
+    .join(" · ");
+  const categoryPath = [work.categoryName, herbClassification]
+    .filter(Boolean)
+    .join(" · ");
 
   return (
     <main className={styles.page}>
-      <Link className={styles.backLink} href={`/${locale}/atlas`}>
-        {copy.back}
+      <Link className={styles.backLink} href={work.backHref}>
+        {copy.backTo.replace("{name}", work.backLabel)}
       </Link>
 
       <div className={styles.detailGrid}>
         <header className={styles.workInfo}>
-          <p className={styles.category}>{work.categoryName}</p>
+          <p className={styles.category}>{categoryPath}</p>
           <h1>{work.title}</h1>
 
           <dl className={styles.metadata}>
@@ -35,6 +43,12 @@ export function AtlasDetailPage({ locale, work }: AtlasDetailPageProps) {
               <dt>{copy.categoryLabel}</dt>
               <dd>{work.categoryName}</dd>
             </div>
+            {herbClassification ? (
+              <div>
+                <dt>{copy.classificationLabel}</dt>
+                <dd>{herbClassification}</dd>
+              </div>
+            ) : null}
             {work.code ? (
               <div>
                 <dt>{copy.codeLabel}</dt>
@@ -74,6 +88,14 @@ export function AtlasDetailPage({ locale, work }: AtlasDetailPageProps) {
         <AtlasGallery copy={copy} images={work.images} workTitle={work.title} />
       </div>
 
+      <AtlasRightsNotice
+        code={work.code}
+        licensingHref={`/${locale}/licensing?${query}` as Route}
+        locale={locale}
+        series={categoryPath}
+        title={work.title}
+      />
+
       {work.relatedWorks.length > 0 ? (
         <section className={styles.related} aria-labelledby="related-atlas-title">
           <header>
@@ -94,7 +116,14 @@ export function AtlasDetailPage({ locale, work }: AtlasDetailPageProps) {
                     width={related.image.thumbnail.width}
                   />
                 </Link>
-                <p>{related.categoryName}</p>
+                <p>
+                  {related.categoryName}
+                  {related.herbTaxonPath
+                    ? ` · ${related.herbTaxonPath
+                        .map((taxon) => taxon.name)
+                        .join(" · ")}`
+                    : ""}
+                </p>
                 <h3>{related.title}</h3>
                 <Link className={styles.relatedAction} href={related.href}>
                   {copy.viewRelated}

@@ -39,9 +39,9 @@ export const workCategories: readonly Category<WorkCategoryKey>[] = [
       en: "Classical Formulas",
     },
     summary: {
-      "zh-CN": "用于归档经典方剂的组成、方义与辨证结构；目前没有可公开图像作品。",
-      "zh-Hant": "用於歸檔經典方劑的組成、方義與辨證結構；目前沒有可公開圖像作品。",
-      en: "An archive for visual studies of classical formula composition and reasoning; no image work is currently public.",
+      "zh-CN": "围绕经典方剂、常见剂型与煎服知识，整理为清楚可读的视觉图谱。",
+      "zh-Hant": "圍繞經典方劑、常見劑型與煎服知識，整理為清楚可讀的視覺圖譜。",
+      en: "Visual plates organized around classical formulas, common dosage forms, and preparation guidance.",
     },
     order: 3,
     publication: { status: "published" },

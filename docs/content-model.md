@@ -48,6 +48,16 @@ type PublicationStatus = "draft" | "review" | "published" | "archived";
 
 分类记录包含稳定 key、本地化名称、简介、排序和发布状态。不得使用不存在作品的数量作为装饰。
 
+本草在 `herbs` 下另有可递归分类树，记录位于 `src/data/herb-taxa.ts`。每个节点具有稳定 key、URL slug、可选 `parentKey`、三语言名称、简介、顺序和发布状态。当前层级为：
+
+- `exterior-releasing`：解表药。
+  - `wind-cold`：发散风寒药。
+  - `wind-heat`：发散风热药。
+
+`parentKey` 必须指向已登记节点，不能指向自身或形成循环。父分类页包含全部后代作品；叶分类页只包含直接归入该叶节点的作品。未来新增清热药、泻火药等门类时继续使用同一树结构，不在组件中硬编码层级。
+
+本草作品只能绑定已发布叶节点；叶节点 `slug` 同时作为 `herbs/<leaf-slug>/...` 的资产路径段。校验器必须从分类树读取这一关系，并拒绝无效 slug、重复路径、缺失父节点、循环、父节点作品绑定和资产路径错配。
+
 ### 3.2 医案分类
 
 - `internal-medicine`：内科。
@@ -67,6 +77,7 @@ interface Work {
   slug: string;
   code?: string;
   category: WorkCategoryKey;
+  herbTaxonKey?: HerbTaxonKey;
   title: LocalizedText;
   summary?: Partial<Record<Locale, string>>;
   description?: LocalizedRichText;
@@ -82,6 +93,8 @@ interface Work {
 规则：
 
 - `code`、版权号、简介均可缺失；组件对缺失值不渲染。
+- `category === "herbs"` 时必须显式填写一个已登记的叶级 `herbTaxonKey`；非本草作品禁止填写此字段。
+- 新作品没有经确认的访客编号时省略 `code`，不得按现有编号样式猜测。
 - `featured` 只控制选择资格，不能绕过 `published`。
 - 没有真实图片的条目不得进入图谱目录，除非产品后来定义了纯文字作品类型。
 - 作品内容用于学习与信息整理，不生成诊断或疗效承诺。
@@ -264,4 +277,3 @@ interface AuthorProfile {
 - 医案：任务 05；当前不得假设存在真实医案。
 - 授权、作者、版权和联系方式：任务 06。
 - 三语言映射与 SEO 文本：任务 07。
-

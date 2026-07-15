@@ -42,8 +42,10 @@ function formatSelectImage(template: string, title: string) {
 export function AtlasGallery({ copy, images, workTitle }: AtlasGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isViewerOpen, setViewerOpen] = useState(false);
+  const [isViewerZoomed, setViewerZoomed] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const viewerBodyRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLElement | null>(null);
   const activeImage = images[activeIndex];
 
@@ -71,15 +73,30 @@ export function AtlasGallery({ copy, images, workTitle }: AtlasGalleryProps) {
   }, [isViewerOpen]);
 
   function selectPrevious() {
+    resetViewerZoom();
     setActiveIndex((current) => (current - 1 + images.length) % images.length);
   }
 
   function selectNext() {
+    resetViewerZoom();
     setActiveIndex((current) => (current + 1) % images.length);
+  }
+
+  function selectImage(index: number) {
+    resetViewerZoom();
+    setActiveIndex(index);
+  }
+
+  function resetViewerZoom() {
+    setViewerZoomed(false);
+    requestAnimationFrame(() => {
+      viewerBodyRef.current?.scrollTo({ left: 0, top: 0 });
+    });
   }
 
   function openViewer(event: MouseEvent<HTMLButtonElement>) {
     openerRef.current = event.currentTarget;
+    resetViewerZoom();
     setViewerOpen(true);
   }
 
@@ -91,7 +108,46 @@ export function AtlasGallery({ copy, images, workTitle }: AtlasGalleryProps) {
     }
 
     setViewerOpen(false);
+    resetViewerZoom();
     requestAnimationFrame(() => openerRef.current?.focus());
+  }
+
+  function toggleViewerZoom(event: MouseEvent<HTMLButtonElement>) {
+    const body = viewerBodyRef.current;
+    const button = event.currentTarget;
+    const willZoom = !isViewerZoomed;
+    const bounds = button.getBoundingClientRect();
+    const isPointerActivation = event.detail > 0;
+    const horizontalRatio = isPointerActivation
+      ? Math.min(1, Math.max(0, (event.clientX - bounds.left) / bounds.width))
+      : 0.5;
+    const verticalRatio = isPointerActivation
+      ? Math.min(1, Math.max(0, (event.clientY - bounds.top) / bounds.height))
+      : 0.5;
+
+    setViewerZoomed(willZoom);
+
+    requestAnimationFrame(() => {
+      if (!body) {
+        return;
+      }
+
+      if (!willZoom) {
+        body.scrollTo({ left: 0, top: 0 });
+        return;
+      }
+
+      body.scrollTo({
+        left: Math.max(
+          0,
+          activeImage.preview.width * horizontalRatio - body.clientWidth / 2,
+        ),
+        top: Math.max(
+          0,
+          activeImage.preview.height * verticalRatio - body.clientHeight / 2,
+        ),
+      });
+    });
   }
 
   function handleDialogKeyDown(event: KeyboardEvent<HTMLDialogElement>) {
@@ -200,7 +256,7 @@ export function AtlasGallery({ copy, images, workTitle }: AtlasGalleryProps) {
                 <button
                   aria-label={formatSelectImage(copy.selectImage, image.title)}
                   aria-pressed={index === activeIndex}
-                  onClick={() => setActiveIndex(index)}
+                  onClick={() => selectImage(index)}
                   type="button"
                 />
               </div>
@@ -243,12 +299,23 @@ export function AtlasGallery({ copy, images, workTitle }: AtlasGalleryProps) {
             </button>
           </header>
 
-          <div className={styles.viewerBody}>
-            <div className={styles.viewerImage}>
+          <div className={styles.viewerBody} ref={viewerBodyRef}>
+            <div
+              className={styles.viewerImage}
+              data-zoomed={isViewerZoomed || undefined}
+              style={{
+                width: isViewerZoomed
+                  ? `${activeImage.preview.width}px`
+                  : undefined,
+              }}
+            >
               <ResilientImage
+                actionLabel={`${copy.viewLarge}：${activeImage.title}`}
+                actionPressed={isViewerZoomed}
                 alt={activeImage.alt}
                 errorMessage={copy.imageError}
                 height={activeImage.preview.height}
+                onActivate={toggleViewerZoom}
                 retryLabel={copy.retryImage}
                 sizes="(max-width: 767px) calc(100vw - 72px), 512px"
                 src={activeImage.preview.src}
@@ -279,7 +346,7 @@ export function AtlasGallery({ copy, images, workTitle }: AtlasGalleryProps) {
                     aria-label={formatSelectImage(copy.selectImage, image.title)}
                     aria-pressed={index === activeIndex}
                     key={image.id}
-                    onClick={() => setActiveIndex(index)}
+                    onClick={() => selectImage(index)}
                     type="button"
                   >
                     <span>{index + 1}</span>

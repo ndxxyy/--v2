@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/config";
 
-interface HomeCopy {
+export interface HomeCopy {
   readonly hero: {
     readonly label: string;
     readonly title: string;
@@ -11,8 +11,30 @@ interface HomeCopy {
     readonly featuredLabel: string;
     readonly viewWork: string;
     readonly codeLabel: string;
+    readonly carouselLabel: string;
+    readonly carouselRole: string;
+    readonly previousWork: string;
+    readonly nextWork: string;
+    readonly chooseWork: string;
+    readonly showWork: string;
     readonly emptyTitle: string;
     readonly emptyDescription: string;
+  };
+  readonly seasonal: {
+    readonly eyebrow: string;
+    readonly title: string;
+    readonly intro: string;
+    readonly lunarLabel: string;
+    readonly hourLabel: string;
+    readonly annualQiTitle: string;
+    readonly yearSuffix: string;
+    readonly movementLabel: string;
+    readonly governingQiLabel: string;
+    readonly sourceQiLabel: string;
+    readonly methodsTitle: string;
+    readonly methodsCaption: string;
+    readonly methods: readonly string[];
+    readonly boundary: string;
   };
   readonly stats: {
     readonly totalWorks: string;
@@ -75,8 +97,30 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       featuredLabel: "本期精选",
       viewWork: "查看作品详情",
       codeLabel: "作品编号",
+      carouselLabel: "首页精选作品",
+      carouselRole: "作品幻灯片",
+      previousWork: "上一幅",
+      nextWork: "下一幅",
+      chooseWork: "选择作品",
+      showWork: "显示作品",
       emptyTitle: "真实作品，经公开审核后呈现",
       emptyDescription: "当前没有完成公开审核的首页精选图谱。这里不会使用示例图、母版文件或假作品填补版面。",
+    },
+    seasonal: {
+      eyebrow: "今日 · 北京时间",
+      title: "今日时令与开穴",
+      intro: "以当天历法、干支年与时辰建立清晰索引。",
+      lunarLabel: "农历",
+      hourLabel: "当前时辰",
+      annualQiTitle: "五运六气",
+      yearSuffix: "年运气索引",
+      movementLabel: "岁运",
+      governingQiLabel: "司天",
+      sourceQiLabel: "在泉",
+      methodsTitle: "时辰开穴法",
+      methodsCaption: "不同法门需分别核对计算口径",
+      methods: ["纳子法", "养子时刻取穴法", "灵龟八法", "飞腾八法"],
+      boundary: "开穴法口径不同，本页仅作历法索引，不提供自助针刺指引；取穴请由专业人员当面判断。",
     },
     stats: {
       totalWorks: "真实作品",
@@ -141,8 +185,30 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       featuredLabel: "本期精選",
       viewWork: "查看作品詳情",
       codeLabel: "作品編號",
+      carouselLabel: "首頁精選作品",
+      carouselRole: "作品幻燈片",
+      previousWork: "上一幅",
+      nextWork: "下一幅",
+      chooseWork: "選擇作品",
+      showWork: "顯示作品",
       emptyTitle: "真實作品，經公開審核後呈現",
       emptyDescription: "目前沒有完成公開審核的首頁精選圖譜。這裡不會以示例圖、母版檔案或虛構作品填補版面。",
+    },
+    seasonal: {
+      eyebrow: "今日 · 北京時間",
+      title: "今日時令與開穴",
+      intro: "以當天曆法、干支年與時辰建立清晰索引。",
+      lunarLabel: "農曆",
+      hourLabel: "目前時辰",
+      annualQiTitle: "五運六氣",
+      yearSuffix: "年運氣索引",
+      movementLabel: "歲運",
+      governingQiLabel: "司天",
+      sourceQiLabel: "在泉",
+      methodsTitle: "時辰開穴法",
+      methodsCaption: "不同法門需分別核對計算口徑",
+      methods: ["納子法", "養子時刻取穴法", "靈龜八法", "飛騰八法"],
+      boundary: "開穴法口徑不同，本頁僅作曆法索引，不提供自助針刺指引；取穴請由專業人員當面判斷。",
     },
     stats: {
       totalWorks: "真實作品",
@@ -207,8 +273,30 @@ export const HOME_COPY: Record<Locale, HomeCopy> = {
       featuredLabel: "Featured work",
       viewWork: "View work details",
       codeLabel: "Work ID",
+      carouselLabel: "Featured works on the home page",
+      carouselRole: "work carousel",
+      previousWork: "Previous",
+      nextWork: "Next",
+      chooseWork: "Choose a featured work",
+      showWork: "Show work",
       emptyTitle: "Authentic work appears only after publication review",
       emptyDescription: "There is currently no featured atlas work cleared for public display. Sample images, master files and invented work are never used to fill the page.",
+    },
+    seasonal: {
+      eyebrow: "Today · China Standard Time",
+      title: "Seasonal timing",
+      intro: "A concise index of today's calendar, cyclical year and double hour.",
+      lunarLabel: "Chinese calendar",
+      hourLabel: "Current double hour",
+      annualQiTitle: "Five movements and six qi",
+      yearSuffix: "year index",
+      movementLabel: "Annual movement",
+      governingQiLabel: "Governing qi",
+      sourceQiLabel: "Qi at the source",
+      methodsTitle: "Point-opening methods",
+      methodsCaption: "Each method requires its own verified calculation convention",
+      methods: ["Na Zi method", "Yang Zi timing", "Ling Gui Ba Fa", "Fei Teng Ba Fa"],
+      boundary: "Calculation conventions differ. This page is a calendar index, not a guide to self-needling; point selection requires an in-person professional assessment.",
     },
     stats: {
       totalWorks: "Published works",

@@ -16,7 +16,7 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  body {
+body {
     margin: 0;
     min-width: 20rem;
     min-height: 100dvh;
@@ -103,6 +103,13 @@
   [hidden] {
     display: none !important;
   }
+}
+
+img[src*="/images/atlas/"],
+img[src*="%2Fimages%2Fatlas%2F"] {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 @layer utilities {

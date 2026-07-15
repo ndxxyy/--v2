@@ -4,12 +4,14 @@
 
 图谱库的缩略图和公开预览图在 WebP 编码前嵌入 `xqy-dct-qim-v2` 频域盲水印。水印绑定品牌“小钟岐医”，并记录不含个人信息的站内资产指纹和图片变体；只有持有本地私钥才能完成认证与归因。
 
-盲水印的输入是 `content-assets/masters/works-watermarked` 中已经审核的 113 张全分辨率母版：
+盲水印的输入是 `content-assets/masters/works-watermarked` 中已经审核的 137 张全分辨率母版：
 
 - 95 张严格经络母版是用户提供的网状明水印 JPG，经映射和内容核验后逐字节导入。
-- 17 张本草和 1 张九针从干净源逐字节恢复，保留源图已有标识。
+- 17 张发散风寒本草从干净源逐字节恢复，保留源图已有标识。
+- 13 张发散风热本草、1 张九针和 10 张剂型图是用户提供的网状明水印 JPG。
+- 1 张“自煎中药”只含既有印章，按保留源标识记录。
 
-公开生成器只缩放母版、嵌入盲水印并编码 WebP，不合成或叠加明水印。95 张经络资产对应的 190 张公开变体记录 `xqy-visible-mesh-v2`、`applied: true`；18 张本草/九针对应的 36 张公开变体记录 `source-visible-preserved-v1`、`applied: false`。明水印导入流程见 `docs/atlas-visible-watermark.md`。
+公开生成器只缩放母版、嵌入盲水印并编码 WebP，不合成或叠加明水印。当前 119 张网状明水印资产对应的 238 张公开变体记录 `xqy-visible-mesh-v2`、`applied: true`；18 张保留源标识资产对应的 36 张公开变体记录 `source-visible-preserved-v1`、`applied: false`。明水印导入流程见 `docs/atlas-visible-watermark.md`。
 
 盲水印适合确认“这张公开图是由本站哪件资产派生的”，不会阻止右键保存，也不能单独代替母版、文件哈希、创作过程和授权记录。当前所有访客获得的是同一个资产级指纹，因此不能追溯到某个具体访客。
 
@@ -18,7 +20,7 @@
 ## 实现
 
 - `scripts/atlas/blind-watermark.mjs`：`xqy-dct-qim-v2` 的 DCT/QIM 嵌入、HMAC 认证和盲检测。
-- `scripts/atlas/generate-visible-masters.mjs`：将用户提供的 95 张经络明水印图映射、核验并逐字节导入，同时从干净源逐字节恢复 18 张本草/九针。
+- `scripts/atlas/generate-visible-masters.mjs`：保留 1.0 全量导入，并支持按版本化资产 ID 对单图或受控小批次做哈希核验、逐字节导入和整库原子替换。
 - `scripts/atlas/generate-images.mjs`：只接受带有效私有导入清单的 `works-watermarked`；在缩放后、WebP 编码前嵌入盲水印，每张编码后立即解码验证，全部成功后再整体发布公开目录与清单。
 - `scripts/atlas/verify-watermarks.mjs`：严格对照生成清单验证整库文件集、尺寸、字节数、最终哈希、明水印状态和盲水印，或对单张可疑图片做盲检测。
 - `scripts/atlas/watermark-registry.mjs`：维护不公开的追加式指纹登记表；作品改名或下架后，旧指纹仍保留归因关系。
@@ -59,17 +61,27 @@ npm run atlas:watermark:detect -- --image "/path/to/suspected-image.webp"
 
 检测成功时会输出品牌“小钟岐医”、站内资产 ID、`thumbnail` / `preview` 变体和置信度。检测不依赖未加水印的原图，但必须拥有正确私钥。错误密钥或认证失败时不会显示品牌，并以失败状态退出。
 
-生成器会先检查母版目录中的 `.atlas-visible-masters.json`，逐张核对路径、SHA-256 和明水印描述。缺少导入清单、母版被替换、数量不是 113，或明水印分类不是 95/18 时均拒绝生成。
+生成器会先检查母版目录中的 `.atlas-visible-masters.json`，逐张核对路径、SHA-256 和明水印描述，并要求与版本化资产清单全集完全一致。缺少导入清单、母版被替换、资产数量/路径变化未登记或明水印分类冲突时均拒绝生成。
 
 ## 最终验收
 
-2026-07-11 使用用户提供的经络明水印母版完成整库重生成并验收：
+### 2026-07-11 基线
+
+2026-07-11 使用用户提供的经络明水印母版完成 1.0 整库重生成并验收：
 
 - 113 个资产各生成 `thumbnail` 与 `preview`，共 226 张公开 WebP。
 - `xqy-dct-qim-v2` 严格验证通过 `226/226`。
 - 明水印状态验证为 `applied: true` 190、`applied: false` 36。
 - 每张公开图的路径、角色、品牌、资产指纹、尺寸、字节数和最终 SHA-256 均与生成清单一致。
 - 经络公开图只继承用户母版中的网状明水印，没有叠加第二层明水印。
+
+### 2026-07-13 当前本地 1.1
+
+- 137 个资产各有 `thumbnail` 与 `preview`，共 274 张公开 WebP。
+- `xqy-dct-qim-v2` 严格验证通过 `274/274`，最低置信度 0.909，每位最少载体数 7。
+- 明水印状态为 `applied: true` 238、`applied: false` 36。
+- 九针换源后沿用稳定资产指纹 `3e70b7a4`；私有登记表保持 250 条，没有密钥漂移或冲突。
+- 本轮只重新编码九针 thumbnail 与 preview，另外 272 张公开 WebP 的 SHA-256 不变。
 
 本次替换前的母版与公开资源备份位于：
 

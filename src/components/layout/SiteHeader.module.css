@@ -22,7 +22,17 @@
   z-index: var(--z-sticky);
   min-height: 4rem;
   border-bottom: 1px solid var(--color-rule);
-  background: var(--color-page);
+  background: color-mix(in oklch, var(--color-page) 82%, transparent);
+  -webkit-backdrop-filter: blur(0.875rem) saturate(115%);
+  backdrop-filter: blur(0.875rem) saturate(115%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .header {
+    background: var(--color-page);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
 }
 
 .mobileBar {

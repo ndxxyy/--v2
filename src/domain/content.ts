@@ -32,6 +32,11 @@ export type LocalizedRichText = Readonly<
 
 export type WorkCategoryKey = "meridians" | "herbs" | "formulas";
 
+export type HerbTaxonKey =
+  | "exterior-releasing"
+  | "wind-cold"
+  | "wind-heat";
+
 export type CaseCategoryKey =
   | "internal-medicine"
   | "gynecology"
@@ -46,6 +51,12 @@ export interface Category<Key extends string> {
   readonly summary?: OptionalLocalizedText;
   readonly order: number;
   readonly publication: PublicationRecord;
+}
+
+export interface HierarchicalCategory<Key extends string>
+  extends Category<Key> {
+  readonly slug: string;
+  readonly parentKey?: Key;
 }
 
 export type ImageVariantKind = "thumbnail" | "preview" | "social";
@@ -95,6 +106,7 @@ export interface Work {
   readonly slug: string;
   readonly code?: string;
   readonly category: WorkCategoryKey;
+  readonly herbTaxonKey?: HerbTaxonKey;
   readonly title: LocalizedText;
   readonly summary?: OptionalLocalizedText;
   readonly description?: LocalizedRichText;
@@ -187,4 +199,3 @@ export interface AuthorProfile {
   readonly credentials: readonly Credential[];
   readonly publication: PublicationRecord;
 }
-

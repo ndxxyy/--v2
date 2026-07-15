@@ -158,3 +158,31 @@ npm run atlas:watermark:verify
 4. 任务 08 必须补做最终构建和两处实时复测，并在 1440×900、390×844 重新截图；重点检查目录第一屏真实作品、ESC 关闭后的焦点返回和滚动解锁。
 5. 不要把 `content-assets/masters/**`、旧站 JPG 或交付级高清文件加入公开目录；详情大图继续使用 `public/images/atlas/previews/**` 中的受控 WebP。
 6. 重新生成图片后必须提交生成清单并复核 226 个公开资源引用均存在；不要只替换图片而不更新宽高和字节数。
+
+## 2026-07-16 大图预览点击缩放修复
+
+### 完成内容
+
+- 修复详情弹窗内图片只有“适应窗口”尺寸、点击后没有变化的问题。
+- 弹窗图片现为可聚焦的切换按钮：首次点击按公开预览图原始像素展开，再次点击恢复适应窗口；`aria-pressed` 同步表达当前缩放状态。
+- 放大后弹窗内容区可横向与纵向滚动，并以点击位置为中心定位；未公开母版或高清交付文件，仍只使用既有公开预览 WebP。
+- 切换上一张、下一张或缩略图、关闭弹窗及重新打开时，均自动退出放大并重置滚动位置。
+- 保留原有 ESC、方向键、焦点限制、背景滚动锁定与关闭后焦点返回行为，未改变详情页结构、配色或视觉风格。
+
+### 修改文件
+
+- `src/features/atlas/AtlasGallery.tsx`
+- `src/features/atlas/AtlasGallery.module.css`
+- `src/features/atlas/ResilientImage.tsx`
+- `src/features/atlas/ResilientImage.module.css`
+- `docs/handoffs/04-atlas.md`
+
+### 验证结果
+
+- `git diff --check`：通过。
+- `npm run typecheck`：通过，0 错误。
+- 图谱画廊相关 TypeScript / TSX 定向 ESLint：通过，0 错误或警告。
+- Impeccable detector：`[]`，0 条规则发现。
+- 桌面实测汤剂科普图谱从约 510px 宽放大到约 1073px，再次点击恢复为 510px；缩放按钮状态与 `zoom-in` / `zoom-out` 光标同步。
+- 390×844 实测放大后图片约 1073px 宽，弹窗内容区 `scrollWidth` 为 1099px、可双向滚动；页面自身 `scrollWidth` 与 `clientWidth` 均为 390px，无横向溢出。
+- 关闭弹窗后焦点返回原图片按钮，页面滚动锁定解除；重新打开时图片恢复适应窗口状态。

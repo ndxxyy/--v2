@@ -5,8 +5,8 @@ import type { Locale } from "@/i18n/config";
 
 import { CopyValueButton } from "./CopyValueButton";
 import { TRUST_COPY } from "./copy";
+import { LICENSING_PRICING_COPY } from "./licensing-pricing";
 import {
-  getLicensingEmail,
   getPublishedAuthor,
   getPublishedContacts,
   getPublishedLicenseScenarios,
@@ -69,35 +69,15 @@ function WorkReference({ locale, value }: { readonly locale: Locale; readonly va
   );
 }
 
-function buildQuoteHref({
-  body,
-  emailHref,
-  scenario,
-  subject,
-  workReference,
-}: {
-  readonly body: string;
-  readonly emailHref: string;
-  readonly scenario: string;
-  readonly subject: string;
-  readonly workReference?: string | null;
-}) {
-  const email = emailHref.replace(/^mailto:/u, "");
-  const details = [body, `\n${scenario}`, workReference ? `\n${workReference}` : ""].join("");
-  const params = new URLSearchParams({ subject, body: details });
-
-  return `mailto:${email}?${params.toString()}`;
-}
-
-function contactFallbackHref(locale: Locale, workReference?: string | null) {
+function licensingContactHref(locale: Locale, workReference?: string | null) {
   const query = workReference ? `?work=${encodeURIComponent(workReference)}` : "";
-  return `/${locale}/contact${query}`;
+  return `/${locale}/contact${query}#licensing-contact`;
 }
 
 export function LicensingPage({ locale, workReference }: PageProps) {
   const copy = TRUST_COPY[locale].licensing;
+  const pricingCopy = LICENSING_PRICING_COPY[locale];
   const scenarios = getPublishedLicenseScenarios(locale);
-  const email = getLicensingEmail(locale);
 
   return (
     <main className={styles.page}>
@@ -114,27 +94,25 @@ export function LicensingPage({ locale, workReference }: PageProps) {
         </div>
         <div className={styles.scenarioGrid}>
           {scenarios.map((scenario) => {
-            const cardCopy = copy.scenarioCards[scenario.id];
-            const href = email?.href
-              ? buildQuoteHref({
-                  body: copy.emailBody,
-                  emailHref: email.href,
-                  scenario: scenario.title,
-                  subject: copy.emailSubject,
-                  workReference,
-                })
-              : contactFallbackHref(locale, workReference);
+            const cardCopy = pricingCopy.scenarioCards[scenario.id];
+            const cardToneClass =
+              scenario.id === "personal-study"
+                ? styles.scenarioCardFriendly
+                : scenario.id === "social-media"
+                  ? styles.scenarioCardFrequent
+                  : scenario.id === "publishing-commercial"
+                    ? styles.scenarioCardEmphasis
+                    : scenario.id === "custom-creation"
+                      ? styles.scenarioCardPremium
+                      : "";
 
             return (
               <article
-                className={`${styles.scenarioCard} ${
-                  scenario.id === "publishing-commercial"
-                    ? styles.scenarioCardEmphasis
-                    : ""
-                }`}
+                className={`${styles.scenarioCard} ${cardToneClass}`}
                 key={scenario.id}
               >
-                {scenario.id === "publishing-commercial" ? (
+                {scenario.id === "publishing-commercial" ||
+                scenario.id === "custom-creation" ? (
                   <p className={styles.scopeReviewLabel}>{copy.scopeReviewLabel}</p>
                 ) : null}
                 <header className={styles.scenarioCardHeader}>
@@ -143,12 +121,36 @@ export function LicensingPage({ locale, workReference }: PageProps) {
                 </header>
                 <div className={styles.quoteBlock}>
                   <p className={styles.quoteModeLabel}>{copy.quoteModeLabel}</p>
-                  <p className={styles.quoteValue}>{cardCopy.value}</p>
-                  <ButtonLink className={styles.quoteAction} href={href} variant="secondary">
-                    {email?.href ? cardCopy.action : copy.quoteUnavailable}
+                  <p className={styles.quoteValue}>{cardCopy.method}</p>
+                  <ButtonLink
+                    className={styles.quoteAction}
+                    href={licensingContactHref(locale, workReference)}
+                    variant="secondary"
+                  >
+                    {cardCopy.action}
                   </ButtonLink>
+                  <div className={styles.referenceFeeBlock}>
+                    <p className={styles.referenceFeeTitle}>{pricingCopy.referenceFeeTitle}</p>
+                    <p className={styles.referenceFeeNote}>{pricingCopy.referenceFeeNote}</p>
+                    <ul className={styles.referenceFeeList}>
+                      {cardCopy.fees.map((fee) => (
+                        <li key={`${fee.label}-${fee.value}`}>
+                          <span>{fee.label}</span>
+                          <strong>{fee.value}</strong>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
                 <div className={styles.scenarioDetails}>
+                  <div className={styles.supplementBlock}>
+                    <h4>{pricingCopy.supplementTitle}</h4>
+                    <p className={styles.supplementApplicable}>{pricingCopy.applicableTitle}</p>
+                    <ul className={styles.supplementUseList}>
+                      {cardCopy.uses.map((use) => <li key={use}>{use}</li>)}
+                    </ul>
+                    <p className={styles.supplementNote}>{cardCopy.note}</p>
+                  </div>
                   <h4>{copy.requirementsTitle}</h4>
                   {scenario.terms.length > 0 ? (
                     <ul className={styles.compactList}>
@@ -163,6 +165,33 @@ export function LicensingPage({ locale, workReference }: PageProps) {
               </article>
             );
           })}
+        </div>
+      </section>
+
+      <section
+        className={`catalog-container ${styles.priceNotesSection}`}
+        aria-labelledby="price-notes-title"
+      >
+        <div className={styles.policyHeading}>
+          <h2 id="price-notes-title">{pricingCopy.priceNotes.title}</h2>
+        </div>
+        <div className={styles.priceNotesBody}>
+          <p>{pricingCopy.priceNotes.intro}</p>
+          <div className={styles.authorizationScopeGrid}>
+            <div>
+              <h3>{pricingCopy.priceNotes.permissionTypesTitle}</h3>
+              <ul>
+                {pricingCopy.priceNotes.permissionTypes.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h3>{pricingCopy.priceNotes.factorsTitle}</h3>
+              <ul>
+                {pricingCopy.priceNotes.factors.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+          <p className={styles.priceNotesEmphasis}>{pricingCopy.priceNotes.emphasis}</p>
         </div>
       </section>
 
@@ -362,8 +391,10 @@ function ContactChannelList({
 
 export function ContactPage({ locale, workReference }: PageProps) {
   const copy = TRUST_COPY[locale].contact;
+  const pricingCopy = LICENSING_PRICING_COPY[locale];
   const consultationChannels = getPublishedContacts(locale, "consultation");
   const learningChannels = getPublishedContacts(locale, "learning");
+  const licensingChannels = getPublishedContacts(locale, "licensing");
   const emailChannels = learningChannels.filter((channel) => channel.kind === "email");
   const wechatChannels = learningChannels.filter((channel) => channel.kind === "wechat");
   const socialChannels = learningChannels.filter(
@@ -403,14 +434,16 @@ export function ContactPage({ locale, workReference }: PageProps) {
         <ContactChannelList channels={socialChannels} locale={locale} />
       </section>
 
-      <section className={`catalog-container ${styles.contactSection}`} aria-labelledby="contact-licensing-title">
+      <section
+        className={`catalog-container ${styles.contactSection}`}
+        id="licensing-contact"
+        aria-labelledby="contact-licensing-title"
+      >
         <div className={styles.contactHeading}>
           <h2 id="contact-licensing-title">{copy.licensingTitle}</h2>
-          <p>{copy.licensingIntro}</p>
+          <p>{pricingCopy.contactIntro}</p>
         </div>
-        <ButtonLink href={`/${locale}/licensing`} variant="primary">
-          {copy.licensingAction}
-        </ButtonLink>
+        <ContactChannelList channels={licensingChannels} locale={locale} />
       </section>
 
       <section className={`catalog-container ${styles.contactSection}`} aria-labelledby="exchange-guidelines-title">

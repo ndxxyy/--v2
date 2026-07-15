@@ -4,6 +4,37 @@
   padding-block: clamp(2.5rem, 6vw, 5rem) var(--spacing-section);
 }
 
+.breadcrumbs {
+  margin-bottom: 1.25rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-caption);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.breadcrumbs li + li::before {
+  color: var(--color-rule);
+  content: "/";
+}
+
+.breadcrumbs a {
+  color: var(--color-primary);
+  text-underline-offset: 0.2em;
+}
+
 .intro {
   display: grid;
   grid-template-columns: minmax(0, 8fr) minmax(10rem, 4fr);
@@ -72,17 +103,136 @@
 }
 
 .categoryLink:hover,
-.categoryLink[aria-current="page"] {
+.categoryLink[aria-current="page"],
+.categoryLink[aria-current="location"] {
   background: var(--color-porcelain-100);
   color: var(--color-porcelain-950);
 }
 
-.categoryLink[aria-current="page"] {
+.categoryLink[aria-current="page"],
+.categoryLink[aria-current="location"] {
   box-shadow: inset 0 -2px 0 var(--color-porcelain-700);
 }
 
 .categoryCount {
   font-variant-numeric: tabular-nums;
+}
+
+.taxonNav {
+  display: grid;
+  grid-template-columns: minmax(12rem, 4fr) minmax(0, 8fr);
+  gap: var(--grid-gutter-desktop);
+  padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.taxonNavHeader > p:first-child,
+.taxonDirectoryLabel {
+  color: var(--color-primary);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.taxonNav h2 {
+  margin-top: 0.5rem;
+  font-size: var(--text-heading-3);
+}
+
+.taxonNavSummary {
+  max-width: 34rem;
+  margin-top: 0.75rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.taxonNavMeta {
+  margin-top: 0.75rem;
+  color: var(--color-ink-700);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.taxonDirectoryLabel {
+  margin-bottom: 0.625rem;
+}
+
+.taxonNav ul {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color-rule);
+  list-style: none;
+}
+
+.taxonNavChapterDirectory ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--grid-gutter-desktop);
+}
+
+.taxonNav a {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(9rem, 1fr) 2.5rem;
+  gap: 1rem;
+  align-items: center;
+  min-height: 4.5rem;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--color-rule);
+  color: inherit;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-catalog), color var(--duration-fast) var(--ease-catalog);
+}
+
+.taxonNav a:hover,
+.taxonNav a[aria-current="page"] {
+  background: var(--color-porcelain-100);
+  color: var(--color-porcelain-950);
+}
+
+.taxonNav a[aria-current="page"] {
+  box-shadow: inset 0 -2px 0 var(--color-porcelain-700);
+}
+
+.taxonOrdinal {
+  color: var(--color-ink-700);
+  font-size: var(--text-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.taxonName {
+  font-family: var(--font-display);
+  font-size: var(--text-body-lg);
+  font-weight: 600;
+}
+
+.taxonCount {
+  justify-self: end;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.loadMoreArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding-top: clamp(2rem, 4vw, 3rem);
+  color: var(--color-ink-700);
+  font-size: var(--text-body-sm);
+}
+
+.loadMoreButton {
+  min-height: 3rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-hair);
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.loadMoreButton:hover {
+  background: var(--color-porcelain-100);
 }
 
 .explorer {
@@ -267,11 +417,26 @@
   .controls {
     grid-template-columns: 1fr;
   }
+
+  .taxonNav {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+
+  .taxonNavChapterDirectory ul {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
 }
 
 @media (max-width: 47.99rem) {
   .page {
     padding-top: 1.5rem;
+  }
+
+  .breadcrumbs {
+    margin-bottom: 1rem;
   }
 
   .intro {
@@ -309,6 +474,17 @@
     border-right: 0;
   }
 
+  .taxonNav a {
+    grid-template-columns: 4.75rem minmax(0, 1fr) auto;
+    gap: 0.5rem;
+    min-height: 3.75rem;
+    padding-inline: 0.75rem;
+  }
+
+  .taxonCount {
+    grid-column: 3;
+  }
+
   .workGrid {
     grid-template-columns: 1fr;
     padding-top: 1rem;
@@ -334,5 +510,12 @@
 
   .filterList {
     gap: 0.5rem;
+  }
+
+
+  .loadMoreArea {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 }

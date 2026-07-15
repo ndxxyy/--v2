@@ -9,6 +9,7 @@
 /coverage
 /test-results
 /playwright-report
+/artifacts/
 
 # Local environment
 .env*
@@ -29,6 +30,7 @@ next-env.d.ts
 # Protected source assets: never publish or commit masters
 /content-assets/masters/**
 !/content-assets/masters/README.md
+/content-assets/backups/**
 
 
 # OpenNext

@@ -229,6 +229,41 @@ const groupDefinitions: readonly GroupDefinition[] = [
   { workId: "work-115", images: [image("herbs/wind-cold/mosla")] },
   { workId: "work-116", images: [image("herbs/wind-cold/magnolia-flower")] },
   { workId: "work-117", images: [image("herbs/wind-cold/perilla")] },
+  { workId: "work-118", images: [image("herbs/wind-heat/mint-herb")] },
+  { workId: "work-119", images: [image("herbs/wind-heat/arctium-fruit")] },
+  { workId: "work-120", images: [image("herbs/wind-heat/cicada-slough")] },
+  { workId: "work-121", images: [image("herbs/wind-heat/mulberry-leaf")] },
+  { workId: "work-122", images: [image("herbs/wind-heat/chrysanthemum-flower")] },
+  { workId: "work-123", images: [image("herbs/wind-heat/vitex-fruit")] },
+  { workId: "work-124", images: [image("herbs/wind-heat/bupleurum-root")] },
+  { workId: "work-125", images: [image("herbs/wind-heat/cimicifuga-rhizome")] },
+  { workId: "work-126", images: [image("herbs/wind-heat/pueraria-root")] },
+  { workId: "work-127", images: [image("herbs/wind-heat/prepared-soybean")] },
+  { workId: "work-128", images: [image("herbs/wind-heat/duckweed-herb")] },
+  { workId: "work-129", images: [image("herbs/wind-heat/equisetum-stem")] },
+  { workId: "work-130", images: [image("herbs/wind-heat/eriocaulon-flower")] },
+  { workId: "work-131", images: [image("formulas/dosage-forms/decoction")] },
+  { workId: "work-132", images: [image("formulas/dosage-forms/pill")] },
+  { workId: "work-133", images: [image("formulas/dosage-forms/powder")] },
+  { workId: "work-134", images: [image("formulas/dosage-forms/paste")] },
+  { workId: "work-135", images: [image("formulas/dosage-forms/dan-preparation")] },
+  { workId: "work-136", images: [image("formulas/dosage-forms/medicinal-wine")] },
+  { workId: "work-137", images: [image("formulas/dosage-forms/distilled-dew")] },
+  { workId: "work-138", images: [image("formulas/dosage-forms/medicinal-tea")] },
+  { workId: "work-139", images: [image("formulas/dosage-forms/granule")] },
+  {
+    workId: "work-140",
+    images: [
+      image(
+        "formulas/dosage-forms/home-decoction-formula-version",
+        label("自煎中药：方剂科普版", "自煎中藥：方劑科普版", "Home decoction: formula edition"),
+      ),
+      image(
+        "formulas/dosage-forms/home-decoction-decoction-version",
+        label("自煎中药：汤剂科普版", "自煎中藥：湯劑科普版", "Home decoction: decoction edition"),
+      ),
+    ],
+  },
 ];
 
 function buildWorkImage(

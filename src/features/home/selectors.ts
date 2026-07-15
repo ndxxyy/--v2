@@ -175,6 +175,10 @@ export function selectHomePageData(locale: Locale): HomePageData {
   const preferredHeroSlugs = [
     "stomach-meridian-atlas",
     "cinnamon-twig-herb-atlas",
+    "nine-needles-atlas",
+    "mint-herb-atlas",
+    "decoction-dosage-form-atlas",
+    "home-decoction-guide",
   ] as const;
   const heroWorks = preferredHeroSlugs.flatMap((slug) => {
     const work = works.find((candidate) => candidate.slug === slug);

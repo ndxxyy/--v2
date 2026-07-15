@@ -7,10 +7,14 @@ export default defineConfig([
   ...nextTypeScript,
   globalIgnores([
     ".next/**",
+    ".open-next/**",
+    ".agents/**",
+    "node_modules/**",
     "out/**",
     "coverage/**",
+    "artifacts/**",
     "next-env.d.ts",
     "content-assets/masters/**",
+    "content-assets/backups/**",
   ]),
 ]);
-

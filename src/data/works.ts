@@ -1,19 +1,33 @@
 import type {
+  HerbTaxonKey,
   LocalizedText,
   OptionalLocalizedText,
+  PublicationRecord,
   Work,
   WorkCategoryKey,
 } from "@/domain/content";
 
-interface WorkDefinition {
+interface WorkDefinitionBase {
   readonly id: string;
   readonly slug: string;
-  readonly code: string;
-  readonly category: WorkCategoryKey;
+  readonly code?: string;
   readonly title: LocalizedText;
   readonly summary: OptionalLocalizedText;
   readonly featured?: boolean;
+  readonly publication: PublicationRecord;
 }
+
+type WorkDefinition = WorkDefinitionBase &
+  (
+    | {
+        readonly category: "herbs";
+        readonly herbTaxonKey: HerbTaxonKey;
+      }
+    | {
+        readonly category: Exclude<WorkCategoryKey, "herbs">;
+        readonly herbTaxonKey?: never;
+      }
+  );
 
 const hiddenRights = {
   ownership: "unverified",
@@ -28,12 +42,11 @@ function defineWork(definition: WorkDefinition): Work {
       definition.title["zh-CN"],
       definition.title["zh-Hant"],
       definition.title.en,
-      definition.code,
+      ...(definition.code ? [definition.code] : []),
     ],
     featured: definition.featured ?? false,
     rights: hiddenRights,
     licenseScenarioIds: [],
-    publication: { status: "published" },
   };
 }
 
@@ -43,6 +56,7 @@ export const works: readonly Work[] = [
     slug: "lung-meridian-atlas",
     code: "XQY-MER-LU-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "手太阴肺经图组",
       "zh-Hant": "手太陰肺經圖組",
@@ -60,6 +74,7 @@ export const works: readonly Work[] = [
     slug: "large-intestine-meridian-atlas",
     code: "XQY-MER-LI-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "手阳明大肠经图组",
       "zh-Hant": "手陽明大腸經圖組",
@@ -77,6 +92,7 @@ export const works: readonly Work[] = [
     slug: "stomach-meridian-atlas",
     code: "XQY-MER-ST-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "足阳明胃经图组",
       "zh-Hant": "足陽明胃經圖組",
@@ -94,6 +110,7 @@ export const works: readonly Work[] = [
     slug: "spleen-meridian-atlas",
     code: "XQY-MER-SP-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "足太阴脾经图组",
       "zh-Hant": "足太陰脾經圖組",
@@ -111,6 +128,7 @@ export const works: readonly Work[] = [
     slug: "heart-meridian-atlas",
     code: "XQY-MER-HT-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "手少阴心经图组",
       "zh-Hant": "手少陰心經圖組",
@@ -128,6 +146,7 @@ export const works: readonly Work[] = [
     slug: "small-intestine-meridian-atlas",
     code: "XQY-MER-SI-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "手太阳小肠经图组",
       "zh-Hant": "手太陽小腸經圖組",
@@ -145,6 +164,7 @@ export const works: readonly Work[] = [
     slug: "bladder-meridian-atlas",
     code: "XQY-MER-BL-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "足太阳膀胱经图组",
       "zh-Hant": "足太陽膀胱經圖組",
@@ -161,6 +181,7 @@ export const works: readonly Work[] = [
     slug: "kidney-meridian-atlas",
     code: "XQY-MER-KI-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "足少阴肾经图组",
       "zh-Hant": "足少陰腎經圖組",
@@ -177,6 +198,7 @@ export const works: readonly Work[] = [
     slug: "pericardium-meridian-atlas",
     code: "XQY-MER-PC-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "手厥阴心包经图组",
       "zh-Hant": "手厥陰心包經圖組",
@@ -193,6 +215,7 @@ export const works: readonly Work[] = [
     slug: "sanjiao-meridian-atlas",
     code: "XQY-MER-SJ-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "手少阳三焦经图组",
       "zh-Hant": "手少陽三焦經圖組",
@@ -209,6 +232,7 @@ export const works: readonly Work[] = [
     slug: "gallbladder-meridian-atlas",
     code: "XQY-MER-GB-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "足少阳胆经图组",
       "zh-Hant": "足少陽膽經圖組",
@@ -225,6 +249,7 @@ export const works: readonly Work[] = [
     slug: "liver-meridian-atlas",
     code: "XQY-MER-LR-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "足厥阴肝经图组",
       "zh-Hant": "足厥陰肝經圖組",
@@ -241,6 +266,7 @@ export const works: readonly Work[] = [
     slug: "ren-meridian-atlas",
     code: "XQY-MER-REN-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "任脉图组",
       "zh-Hant": "任脈圖組",
@@ -257,6 +283,7 @@ export const works: readonly Work[] = [
     slug: "du-meridian-atlas",
     code: "XQY-MER-DU-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "督脉图组",
       "zh-Hant": "督脈圖組",
@@ -273,6 +300,7 @@ export const works: readonly Work[] = [
     slug: "nine-needles-atlas",
     code: "XQY-MER-JZ-001",
     category: "meridians",
+    publication: { status: "published" },
     title: {
       "zh-CN": "九针图谱",
       "zh-Hant": "九針圖譜",
@@ -290,6 +318,8 @@ export const works: readonly Work[] = [
     slug: "xanthium-herb-atlas",
     code: "XQY-HERB-WC-001",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "苍耳子图谱", "zh-Hant": "蒼耳子圖譜", en: "Xanthium Fruit Atlas" },
     summary: {
       "zh-CN": "围绕苍耳子的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -302,6 +332,8 @@ export const works: readonly Work[] = [
     slug: "angelica-dahurica-herb-atlas",
     code: "XQY-HERB-WC-002",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "白芷图谱", "zh-Hant": "白芷圖譜", en: "Angelica Dahurica Atlas" },
     summary: {
       "zh-CN": "围绕白芷的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -314,6 +346,8 @@ export const works: readonly Work[] = [
     slug: "scallion-stalk-herb-atlas",
     code: "XQY-HERB-WC-003",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "葱白图谱", "zh-Hant": "蔥白圖譜", en: "Scallion Stalk Atlas" },
     summary: {
       "zh-CN": "围绕葱白的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -326,6 +360,8 @@ export const works: readonly Work[] = [
     slug: "centipeda-herb-atlas",
     code: "XQY-HERB-WC-004",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "鹅不食草图谱", "zh-Hant": "鵝不食草圖譜", en: "Centipeda Atlas" },
     summary: {
       "zh-CN": "围绕鹅不食草的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -338,6 +374,8 @@ export const works: readonly Work[] = [
     slug: "saposhnikovia-herb-atlas",
     code: "XQY-HERB-WC-005",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "防风图谱", "zh-Hant": "防風圖譜", en: "Saposhnikovia Root Atlas" },
     summary: {
       "zh-CN": "围绕防风的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -350,6 +388,8 @@ export const works: readonly Work[] = [
     slug: "ligusticum-herb-atlas",
     code: "XQY-HERB-WC-006",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "藁本图谱", "zh-Hant": "藁本圖譜", en: "Chinese Lovage Rhizome Atlas" },
     summary: {
       "zh-CN": "围绕藁本的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -362,6 +402,8 @@ export const works: readonly Work[] = [
     slug: "tamarisk-herb-atlas",
     code: "XQY-HERB-WC-007",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "怪柳图谱", "zh-Hant": "怪柳圖譜", en: "Tamarisk Twig Atlas" },
     summary: {
       "zh-CN": "围绕怪柳的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -374,6 +416,8 @@ export const works: readonly Work[] = [
     slug: "cinnamon-twig-herb-atlas",
     code: "XQY-HERB-WC-008",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "桂枝图谱", "zh-Hant": "桂枝圖譜", en: "Cinnamon Twig Atlas" },
     summary: {
       "zh-CN": "围绕桂枝的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -386,6 +430,8 @@ export const works: readonly Work[] = [
     slug: "coriander-herb-atlas",
     code: "XQY-HERB-WC-009",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "胡荽图谱", "zh-Hant": "胡荽圖譜", en: "Coriander Atlas" },
     summary: {
       "zh-CN": "围绕胡荽的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -398,6 +444,8 @@ export const works: readonly Work[] = [
     slug: "schizonepeta-herb-atlas",
     code: "XQY-HERB-WC-010",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "荆芥图谱", "zh-Hant": "荊芥圖譜", en: "Schizonepeta Herb Atlas" },
     summary: {
       "zh-CN": "围绕荆芥的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -410,6 +458,8 @@ export const works: readonly Work[] = [
     slug: "ephedra-herb-atlas",
     code: "XQY-HERB-WC-011",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "麻黄图谱", "zh-Hant": "麻黃圖譜", en: "Ephedra Herb Atlas" },
     summary: {
       "zh-CN": "围绕麻黄的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -422,6 +472,8 @@ export const works: readonly Work[] = [
     slug: "notopterygium-herb-atlas",
     code: "XQY-HERB-WC-012",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "羌活图谱", "zh-Hant": "羌活圖譜", en: "Notopterygium Rhizome and Root Atlas" },
     summary: {
       "zh-CN": "围绕羌活的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -434,6 +486,8 @@ export const works: readonly Work[] = [
     slug: "fresh-ginger-herb-atlas",
     code: "XQY-HERB-WC-013",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "生姜图谱", "zh-Hant": "生薑圖譜", en: "Fresh Ginger Atlas" },
     summary: {
       "zh-CN": "围绕生姜的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -446,6 +500,8 @@ export const works: readonly Work[] = [
     slug: "asarum-herb-atlas",
     code: "XQY-HERB-WC-014",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "细辛图谱", "zh-Hant": "細辛圖譜", en: "Asarum Herb Atlas" },
     summary: {
       "zh-CN": "围绕细辛的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -458,6 +514,8 @@ export const works: readonly Work[] = [
     slug: "mosla-herb-atlas",
     code: "XQY-HERB-WC-015",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "香薷图谱", "zh-Hant": "香薷圖譜", en: "Mosla Herb Atlas" },
     summary: {
       "zh-CN": "围绕香薷的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -470,6 +528,8 @@ export const works: readonly Work[] = [
     slug: "magnolia-flower-herb-atlas",
     code: "XQY-HERB-WC-016",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "辛夷图谱", "zh-Hant": "辛夷圖譜", en: "Magnolia Flower Atlas" },
     summary: {
       "zh-CN": "围绕辛夷的植物形态、药材性味归经与发散风寒应用要点整理。",
@@ -482,11 +542,302 @@ export const works: readonly Work[] = [
     slug: "perilla-herb-atlas",
     code: "XQY-HERB-WC-017",
     category: "herbs",
+    herbTaxonKey: "wind-cold",
+    publication: { status: "published" },
     title: { "zh-CN": "紫苏图谱", "zh-Hant": "紫蘇圖譜", en: "Perilla Atlas" },
     summary: {
       "zh-CN": "围绕紫苏的植物形态、药材性味归经与发散风寒应用要点整理。",
       "zh-Hant": "圍繞紫蘇的植物形態、藥材性味歸經與發散風寒應用要點整理。",
       en: "A plate of Perilla covering plant form, traditional properties, channel entry, and wind-cold dispersing notes.",
+    },
+  }),
+  defineWork({
+    id: "work-118",
+    slug: "mint-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "薄荷图谱", "zh-Hant": "薄荷圖譜", en: "Bo He Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的薄荷视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的薄荷視覺圖譜。",
+      en: "A visual plate of Bo He catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-119",
+    slug: "arctium-fruit-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "牛蒡子图谱", "zh-Hant": "牛蒡子圖譜", en: "Niu Bang Zi Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的牛蒡子视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的牛蒡子視覺圖譜。",
+      en: "A visual plate of Niu Bang Zi catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-120",
+    slug: "cicada-slough-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "蝉蜕图谱", "zh-Hant": "蟬蛻圖譜", en: "Chan Tui Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的蝉蜕视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的蟬蛻視覺圖譜。",
+      en: "A visual plate of Chan Tui catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-121",
+    slug: "mulberry-leaf-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "桑叶图谱", "zh-Hant": "桑葉圖譜", en: "Sang Ye Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的桑叶视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的桑葉視覺圖譜。",
+      en: "A visual plate of Sang Ye catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-122",
+    slug: "chrysanthemum-flower-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "菊花图谱", "zh-Hant": "菊花圖譜", en: "Ju Hua Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的菊花视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的菊花視覺圖譜。",
+      en: "A visual plate of Ju Hua catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-123",
+    slug: "vitex-fruit-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "蔓荆子图谱", "zh-Hant": "蔓荊子圖譜", en: "Man Jing Zi Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的蔓荆子视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的蔓荊子視覺圖譜。",
+      en: "A visual plate of Man Jing Zi catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-124",
+    slug: "bupleurum-root-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "柴胡图谱", "zh-Hant": "柴胡圖譜", en: "Chai Hu Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的柴胡视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的柴胡視覺圖譜。",
+      en: "A visual plate of Chai Hu catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-125",
+    slug: "cimicifuga-rhizome-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "升麻图谱", "zh-Hant": "升麻圖譜", en: "Sheng Ma Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的升麻视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的升麻視覺圖譜。",
+      en: "A visual plate of Sheng Ma catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-126",
+    slug: "pueraria-root-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "葛根图谱", "zh-Hant": "葛根圖譜", en: "Ge Gen Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的葛根视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的葛根視覺圖譜。",
+      en: "A visual plate of Ge Gen catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-127",
+    slug: "prepared-soybean-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "淡豆豉图谱", "zh-Hant": "淡豆豉圖譜", en: "Dan Dou Chi Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的淡豆豉视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的淡豆豉視覺圖譜。",
+      en: "A visual plate of Dan Dou Chi catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-128",
+    slug: "duckweed-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "浮萍图谱", "zh-Hant": "浮萍圖譜", en: "Fu Ping Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的浮萍视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的浮萍視覺圖譜。",
+      en: "A visual plate of Fu Ping catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-129",
+    slug: "equisetum-stem-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "木贼图谱", "zh-Hant": "木賊圖譜", en: "Mu Zei Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的木贼视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的木賊視覺圖譜。",
+      en: "A visual plate of Mu Zei catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-130",
+    slug: "eriocaulon-flower-herb-atlas",
+    category: "herbs",
+    herbTaxonKey: "wind-heat",
+    publication: { status: "published" },
+    title: { "zh-CN": "谷精草图谱", "zh-Hant": "穀精草圖譜", en: "Gu Jing Cao Atlas" },
+    summary: {
+      "zh-CN": "收录于本草金鉴“解表药·发散风热药”的谷精草视觉图谱。",
+      "zh-Hant": "收錄於本草金鑑「解表藥・發散風熱藥」的穀精草視覺圖譜。",
+      en: "A visual plate of Gu Jing Cao catalogued in the wind-heat-dispersing section of Materia Medica.",
+    },
+  }),
+  defineWork({
+    id: "work-131",
+    slug: "decoction-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "汤剂科普图谱", "zh-Hant": "湯劑科普圖譜", en: "Decoction Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理汤剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理湯劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of decoctions.",
+    },
+  }),
+  defineWork({
+    id: "work-132",
+    slug: "pill-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "丸剂科普图谱", "zh-Hant": "丸劑科普圖譜", en: "Pill Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理丸剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理丸劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of pills.",
+    },
+  }),
+  defineWork({
+    id: "work-133",
+    slug: "powder-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "散剂科普图谱", "zh-Hant": "散劑科普圖譜", en: "Powder Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理散剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理散劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of powders.",
+    },
+  }),
+  defineWork({
+    id: "work-134",
+    slug: "paste-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "膏剂科普图谱", "zh-Hant": "膏劑科普圖譜", en: "Paste Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理膏剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理膏劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of paste preparations.",
+    },
+  }),
+  defineWork({
+    id: "work-135",
+    slug: "dan-preparation-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "丹剂科普图谱", "zh-Hant": "丹劑科普圖譜", en: "Dan Preparation Atlas" },
+    summary: {
+      "zh-CN": "整理丹剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理丹劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of dan preparations.",
+    },
+  }),
+  defineWork({
+    id: "work-136",
+    slug: "medicinal-wine-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "酒剂科普图谱", "zh-Hant": "酒劑科普圖譜", en: "Medicinal Wine Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理酒剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理酒劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of medicinal wines.",
+    },
+  }),
+  defineWork({
+    id: "work-137",
+    slug: "distilled-dew-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "露剂科普图谱", "zh-Hant": "露劑科普圖譜", en: "Distilled Dew Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理露剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理露劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of distilled dew preparations.",
+    },
+  }),
+  defineWork({
+    id: "work-138",
+    slug: "medicinal-tea-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "茶剂科普图谱", "zh-Hant": "茶劑科普圖譜", en: "Medicinal Tea Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理茶剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理茶劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of medicinal teas.",
+    },
+  }),
+  defineWork({
+    id: "work-139",
+    slug: "granule-dosage-form-atlas",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "颗粒剂科普图谱", "zh-Hant": "顆粒劑科普圖譜", en: "Granule Dosage Form Atlas" },
+    summary: {
+      "zh-CN": "整理颗粒剂的基本形态、分类与使用提示，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "整理顆粒劑的基本形態、分類與使用提示，收錄於「劑型區別」視覺科普系列。",
+      en: "A visual educational plate in the Dosage Forms series, organizing the basic form, classification, and use notes of granules.",
+    },
+  }),
+  defineWork({
+    id: "work-140",
+    slug: "home-decoction-guide",
+    category: "formulas",
+    publication: { status: "published" },
+    title: { "zh-CN": "自煎中药指南", "zh-Hant": "自煎中藥指南", en: "Home Decoction Guide" },
+    summary: {
+      "zh-CN": "以两张配套图整理自煎中药的准备、操作与注意事项，收录于“剂型区别”视觉科普系列。",
+      "zh-Hant": "以兩張配套圖整理自煎中藥的準備、操作與注意事項，收錄於「劑型區別」視覺科普系列。",
+      en: "A two-plate visual guide to preparation, handling, and practical notes for making herbal decoctions at home, in the Dosage Forms series.",
     },
   }),
 ];

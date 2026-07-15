@@ -16,6 +16,7 @@ interface ResilientImageProps {
   readonly retryLabel: string;
   readonly imageClassName?: string;
   readonly actionLabel?: string;
+  readonly actionPressed?: boolean;
   readonly onActivate?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -25,6 +26,7 @@ export function ResilientImage(props: ResilientImageProps) {
 
 function ResilientImageState({
   actionLabel,
+  actionPressed,
   alt,
   errorMessage,
   height,
@@ -66,6 +68,7 @@ function ResilientImageState({
       ) : onActivate && actionLabel ? (
         <button
           aria-label={actionLabel}
+          aria-pressed={actionPressed}
           className={styles.action}
           onClick={onActivate}
           type="button"
@@ -73,6 +76,7 @@ function ResilientImageState({
           <Image
             alt={alt}
             className={`${styles.image} ${imageClassName ?? ""}`}
+            draggable={false}
             fill
             key={attempt}
             onError={() => setFailed(true)}
@@ -87,6 +91,7 @@ function ResilientImageState({
         <Image
           alt={alt}
           className={`${styles.image} ${imageClassName ?? ""}`}
+          draggable={false}
           fill
           key={attempt}
           onError={() => setFailed(true)}

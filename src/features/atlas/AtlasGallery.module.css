@@ -152,6 +152,7 @@
 .viewerBody {
   min-height: 0;
   overflow: auto;
+  overscroll-behavior: contain;
   padding: 1.25rem;
   background: var(--color-xuan-100);
 }
@@ -161,6 +162,11 @@
   margin-inline: auto;
   border: 1px solid var(--color-xuan-200);
   background: white;
+}
+
+.viewerImage[data-zoomed] {
+  max-width: none;
+  margin-inline: 0;
 }
 
 .viewerFooter {

@@ -18,6 +18,8 @@ interface AtlasExplorerProps {
   readonly copy: AtlasCopy["catalog"];
 }
 
+const PAGE_SIZE = 18;
+
 function normalize(value: string, locale: Locale): string {
   return value.normalize("NFKC").trim().toLocaleLowerCase(locale);
 }
@@ -32,11 +34,22 @@ function formatResultCount(
   );
 }
 
+function formatTemplate(
+  template: string,
+  values: Readonly<Record<string, string | number>>,
+): string {
+  return Object.entries(values).reduce(
+    (result, [key, value]) => result.replace(`{${key}}`, String(value)),
+    template,
+  );
+}
+
 export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<WorkCategoryKey | "all">(
     data.activeCategory?.key ?? "all",
   );
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const normalizedQuery = normalize(query, locale);
   const filteredWorks = useMemo(
     () =>
@@ -50,7 +63,10 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
   const selectedCategory = data.categories.find(
     (candidate) => candidate.key === category,
   );
-  const hasFilters = category !== "all" || Boolean(normalizedQuery);
+  const visibleWorks = filteredWorks.slice(0, visibleCount);
+  const remainingCount = Math.max(filteredWorks.length - visibleWorks.length, 0);
+  const hasFilters =
+    (!data.activeCategory && category !== "all") || Boolean(normalizedQuery);
 
   return (
     <section className={styles.explorer} aria-labelledby="atlas-results-title">
@@ -64,7 +80,10 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
               autoComplete="off"
               className={styles.searchInput}
               id="atlas-search"
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setVisibleCount(PAGE_SIZE);
+              }}
               placeholder={copy.searchPlaceholder}
               type="search"
               value={query}
@@ -72,7 +91,10 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
             {query ? (
               <button
                 className={styles.clearSearch}
-                onClick={() => setQuery("")}
+                onClick={() => {
+                  setQuery("");
+                  setVisibleCount(PAGE_SIZE);
+                }}
                 type="button"
               >
                 {copy.clearSearch}
@@ -86,7 +108,10 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
             <legend>{copy.filtersLabel}</legend>
             <div className={styles.filterList}>
               <FilterButton
-                onClick={() => setCategory("all")}
+                onClick={() => {
+                  setCategory("all");
+                  setVisibleCount(PAGE_SIZE);
+                }}
                 selected={category === "all"}
               >
                 {copy.allWorks} · {data.works.length}
@@ -94,7 +119,10 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
               {data.categories.map((option) => (
                 <FilterButton
                   key={option.key}
-                  onClick={() => setCategory(option.key)}
+                  onClick={() => {
+                    setCategory(option.key);
+                    setVisibleCount(PAGE_SIZE);
+                  }}
                   selected={category === option.key}
                 >
                   {option.name} · {option.count}
@@ -108,7 +136,11 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
       <div className={styles.resultsHeader} aria-live="polite">
         <div>
           <p className={styles.currentFilter}>
-            {selectedCategory
+            {data.activeHerbTaxon
+              ? `${copy.currentHerbTaxon}：${data.activeHerbTaxon.path
+                  .map((taxon) => taxon.name)
+                  .join(" · ")}`
+              : selectedCategory
               ? `${copy.currentCategory}：${selectedCategory.name}`
               : copy.currentAll}
             {normalizedQuery ? ` · ${copy.currentSearch}：${query.trim()}` : ""}
@@ -123,6 +155,7 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
             onClick={() => {
               setQuery("");
               setCategory(data.activeCategory?.key ?? "all");
+              setVisibleCount(PAGE_SIZE);
             }}
             type="button"
           >
@@ -133,7 +166,7 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
 
       {filteredWorks.length > 0 ? (
         <ul className={styles.workGrid}>
-          {filteredWorks.map((work, index) => (
+          {visibleWorks.map((work, index) => (
             <li className={styles.workItem} key={work.id}>
               <article>
                 <Link
@@ -155,6 +188,11 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
                 <div className={styles.workBody}>
                   <p className={styles.workMeta}>
                     {work.categoryName}
+                    {work.herbTaxonPath
+                      ? ` · ${work.herbTaxonPath
+                          .map((taxon) => taxon.name)
+                          .join(" · ")}`
+                      : ""}
                     {work.code ? ` · ${copy.codeLabel} ${work.code}` : ""}
                   </p>
                   <h3 className={styles.workTitle}>{work.title}</h3>
@@ -181,7 +219,15 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
               ? copy.categoryEmptyDescription
               : copy.noResultsDescription}
           </p>
-          {data.activeCategory ? (
+          {normalizedQuery ? (
+            <button
+              className={styles.emptyAction}
+              onClick={() => setQuery("")}
+              type="button"
+            >
+              {copy.clearSearch}
+            </button>
+          ) : data.activeCategory ? (
             <Link className={styles.emptyAction} href={`/${locale}/atlas`}>
               {copy.resetFilters}
             </Link>
@@ -199,6 +245,26 @@ export function AtlasExplorer({ copy, data, locale }: AtlasExplorerProps) {
           ) : null}
         </div>
       )}
+
+      {remainingCount > 0 ? (
+        <div className={styles.loadMoreArea}>
+          <p aria-live="polite">
+            {formatTemplate(copy.showingCount, {
+              shown: visibleWorks.length,
+              total: filteredWorks.length,
+            })}
+          </p>
+          <button
+            className={styles.loadMoreButton}
+            onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
+            type="button"
+          >
+            {formatTemplate(copy.loadMore, {
+              count: Math.min(PAGE_SIZE, remainingCount),
+            })}
+          </button>
+        </div>
+      ) : null}
     </section>
   );
 }

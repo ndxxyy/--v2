@@ -120,3 +120,188 @@
 5. 任务 07 可在 `src/app/[locale]/layout.tsx` 接管 metadata 与语言层，但应保留 `SiteFrame`、`lang={locale}` 和 `min-w-0`，不要重新设计导航与首页。
 6. 任务 08 浏览器复核时应在任务 04 数据迁移后重新截取首页；届时重点确认首屏真实作品、图片比例、`sizes`、加载优先级和图片失败状态。
 7. Impeccable 自动 Hook 仍未启用；本任务仅运行 detector，没有改变 Hook 配置。
+
+---
+
+## 2026-07-13 首页时令面板与作品幻灯片补充交接
+
+### 完成内容
+
+- 按用户对首页首屏右半区的批注，将原两幅并列作品改为“左侧真实作品幻灯片 + 右侧今日时令与开穴”非对称编目布局。
+- 作品幻灯片使用 3 件现有已发布真实作品：足阳明胃经图组、桂枝图谱、九针图谱；支持上一幅、下一幅、三项直接选择及左右方向键，不自动播放。
+- 时令面板以北京时间实时显示：公历日期、时间、农历日期、当前时辰、干支年、岁运、司天与在泉。
+- 面板明确列出纳子法、养子时刻取穴法、灵龟八法、飞腾八法，但没有输出未经核验的当前穴位。旧站只读搜索与 V2 数据均未发现获准复用的计算口径，因此页面将其限定为历法索引，并明确不提供自助针刺指引。
+- 增补简体、繁体、英文文案；英文使用较短的 `Seasonal timing` 标题，避免窄屏冗长断行。
+- 手机端顺序为品牌身份 → 真实作品幻灯片 → 时令面板 → 首页账册；工具不替代首屏真实作品。
+- 首页路由改为按请求动态渲染，以保证服务器首屏日期与客户端一致，并由客户端每 30 秒刷新时间，避免静态构建日期过期和 hydration 布局跳动。
+- 轮播控件保持 44×44px 触控下限、3px focus-visible、手动切换和 reduced-motion 无动画状态。
+
+### 修改文件
+
+- `src/features/home/HeroWorkCarousel.tsx`（新增）
+- `src/features/home/SeasonalTodayPanel.tsx`（新增）
+- `src/features/home/seasonal.ts`（新增）
+- `src/features/home/HomePage.tsx`
+- `src/features/home/HomePage.module.css`
+- `src/features/home/copy.ts`
+- `src/features/home/selectors.ts`
+- `src/app/[locale]/page.tsx`
+- `design-qa.md`
+- `docs/handoffs/03-home.md`
+
+没有修改 `src/data/**`、旧站文件、任务 04–07 页面或全局设计令牌。
+
+### 验证结果
+
+| 验证 | 结果 |
+| --- | --- |
+| `npm run typecheck` | 通过，0 错误 |
+| `npm run lint -- --ignore-pattern '.agents/**'` | 通过，0 错误/警告 |
+| `npm run build` | 通过；首页三语言路由按需动态渲染，其余既有路由保持正常 |
+| Impeccable layout/type/full detector | 3 次均为 `[]` |
+| 1440×900 正式预览 | 1 个 H1；页面 `scrollWidth === clientWidth`；控制台 0 error |
+| 390×844 正式预览 | 1 个 H1；375px 内容宽度无横向溢出；控制台 0 error |
+| 轮播 | 上一幅/下一幅、直接选择、循环切换、ArrowRight 切换均通过 |
+| 可访问性 | 所有 5 个轮播按钮最小高度 44px；焦点环为 3px、offset 3px；reduced-motion 已覆盖 |
+| 三语言 | 简体、繁体、英文均渲染；繁体/英文手机宽度均无溢出 |
+
+桌面截图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-seasonal-1440x900-final.png`
+
+手机首屏：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-seasonal-390x844-final.png`
+
+手机面板：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-seasonal-panel-390x844-final.png`
+
+对照图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-seasonal-comparison.png`
+
+### 遗留问题
+
+- 当前未实现纳子法、养子时刻取穴法、灵龟八法、飞腾八法的具体开穴结果；需要用户确认采用的典籍、流派、日界与时辰边界、真太阳时/北京时间等计算口径，并提供可审校规则后再开发。
+- 五运六气当前为“按当前农历干支年”的年运气索引，只展示岁运、司天、在泉，不声称代替完整五运六气排盘或临床判断。
+- 首页由静态路由改为动态路由是实时日期的必要成本；任务 07/08 做性能验收时应确认部署环境的动态渲染缓存策略。
+
+### 后续任务注意事项
+
+1. 若继续实现具体开穴结果，必须先建立可版本化的计算口径文档、边界样例和测试用例；不能直接把网络口诀或示例表格写入页面。
+2. 新增详细排盘页前需单独冻结路由与任务所有权；当前首页只负责摘要，不应继续堆叠完整专业计算表。
+3. 轮播 `heroWorks` 由首页选择器固定挑选已发布作品；更换作品时继续满足当前语言标题、alt 与 WebP/AVIF thumbnail 条件。
+4. 任务 07 处理首页缓存与 Metadata 时必须保留实时内容的服务器/客户端一致性，不要把构建时日期固定为“今日”。
+
+---
+
+## 2026-07-13 首页右侧最终布局调整
+
+本节覆盖上一节所述的“作品与完整时令面板并排”方案；上一节保留为迭代记录，不代表当前访客界面。
+
+### 完成内容
+
+- 按用户提供的两个局部参考，将首页右半区改为单一纵向编目列：顶部是精简日历，下面是完整宽度的真实作品幻灯片。
+- 日历只保留公历日期、北京时间、农历日期与当前时辰；五运六气年运、司天/在泉、四种开穴方法名称和医学边界说明均不再出现在首页首屏。
+- 足阳明胃经作品改为在右侧整列内 `contain` 展示，标题牌与真实图像均保留；桂枝、九针仍可通过幻灯片访问。
+- 幻灯片控制区由双行 90px 收为单行约 45px，只显示上一幅、当前序号/总数、下一幅；左右方向键和循环切换继续有效。
+- 手机顺序为品牌信息 → 精简日历 → 真实作品；390×844 首屏可以同时看到日历和作品开头。
+
+### 修改文件
+
+- `src/features/home/HomePage.tsx`
+- `src/features/home/HomePage.module.css`
+- `src/features/home/HeroWorkCarousel.tsx`
+- `src/features/home/SeasonalTodayPanel.tsx`
+- `design-qa.md`
+- `docs/handoffs/03-home.md`
+
+### 验证结果
+
+| 验证 | 结果 |
+| --- | --- |
+| `npm run typecheck` | 通过 |
+| `npm run lint -- --ignore-pattern '.agents/**'` | 通过 |
+| `npm run build` | 通过，177 个既有静态页面生成完成，首页保持动态渲染 |
+| Impeccable layout detector | `[]` |
+| 1440×900 正式预览 | 1 个 H1；无横向溢出；控制台 0 error；日历在上、作品在下 |
+| 390×844 正式预览 | 无横向溢出；按钮高度 ≥44px；日历与作品均进入首屏 |
+| 简体/繁体/英文 | 均无横向溢出；英文长日期与时间无可见重叠 |
+
+桌面截图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-calendar-stacked-1440x900-final.png`
+
+手机截图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-calendar-stacked-390x844-final.png`
+
+对照图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-calendar-stacked-comparison.png`
+
+### 后续注意事项
+
+- 首页当前只承担“今日历法摘要”，不再承载完整五运六气或开穴方法索引；如恢复专业计算功能，应另设独立页面并先冻结计算口径。
+- 后续更换首幅作品时应继续使用已发布真实缩略图，并检查纵向标题牌在 390px 与 1440px 下的遮挡关系。
+
+---
+
+## 2026-07-13 日历与全局导航批注微调
+
+### 完成内容
+
+- 将首页右上角日历进一步压缩为紧凑信息带：日期与时间缩小，农历/时辰标签和值的字号、行高和间距同步收紧。
+- 去除日历内容内部的上下两条横线，保留面板与作品之间、模块与页面之间真正承担结构作用的编目分隔线。
+- 为桌面主导航增加克制的透明毛玻璃背景，沿用宣纸白与既有细线；滚动时可分离导航和页面内容，顶部静止状态仍保持安静。
+- 为系统“减少透明度”偏好增加纯色背景回退，不依赖模糊效果维持导航可读性。
+- 未修改图谱库搜索栏。该批注涉及 `src/features/atlas/**`，属于任务 04 独占范围；为避免覆盖任务 04 的实现，本轮仅记录后续调整要求。
+
+### 修改文件
+
+- `src/features/home/HomePage.module.css`
+- `src/components/layout/SiteHeader.module.css`
+- `design-qa.md`
+- `docs/handoffs/03-home.md`
+
+没有修改 `src/features/atlas/**`、`src/app/[locale]/atlas/**`、旧站文件或全局设计令牌。
+
+### 验证结果
+
+| 验证 | 结果 |
+| --- | --- |
+| `npm run typecheck` | 通过 |
+| `npm run lint -- --ignore-pattern '.agents/**'` | 通过 |
+| `npm run build` | 通过；177 个既有静态页面生成完成，首页保持动态渲染 |
+| Impeccable full/layout detector | 均为 `[]` |
+| 1295×945 正式预览 | 日历约 136.7px 高；内部上下边框均为 0；1 个 H1；无横向溢出；控制台 0 error |
+| 导航滚动状态 | 82% 宣纸色透明背景与约 14px 模糊生效；导航文字保持清楚 |
+| 响应式静态复核 | 390px 下日期/时间最小 20px、时间不换行；两列日历字段和既有移动导航结构不变 |
+
+桌面截图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-compact-calendar-glass-header-1295x945-final.png`
+
+导航滚动截图：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-glass-header-scrolled-final.png`
+
+前后对照：`/Users/nidexingxingyanjingya/.codex/visualizations/2026/07/10/019f4b32-f472-71a1-bdba-e74f315d148e/03-home-compact-calendar-glass-header-comparison.png`
+
+### 遗留问题与后续任务注意事项
+
+- 任务 04 应将图谱搜索框移到图谱库页标题区域的右上角，并在 390px 下恢复为标题下方全宽排列；调整时保留真实筛选、当前筛选状态和键盘标签关系。
+- 毛玻璃在页面顶部因下方背景接近宣纸白而较克制，这是有意的；不要通过增加阴影、渐变或更高饱和度来强化效果。
+- 任务 08 应在低端手机上复核 sticky `backdrop-filter` 的滚动合成开销；如出现掉帧，优先降低模糊半径或对小屏使用半透明纯色，不改变导航结构。
+
+---
+
+## 2026-07-14 首页精选扩容与每日轮换
+
+### 完成内容
+
+- 首页精选池由 3 幅扩为 6 幅：足阳明胃经、桂枝、九针、薄荷、汤剂科普和自煎中药指南。
+- 使用北京时间日期确定每日首图；同一天刷新保持稳定，上一幅、下一幅仍按固定顺序循环，不自动播放。
+- 图片链接始终进入当前作品详情；新增作品完整展示，不随机跳去其他作品。
+- 修正前后按钮的无障碍名称，并将切换动画的重建节点下移到非交互图像容器，使图片链接上的键盘焦点不会在切换后丢失。
+- 当前首图与后续切换图均按首屏图片加载，避免切换后触发 LCP 懒加载警告。
+
+### 验证结果
+
+| 验证 | 结果 |
+| --- | --- |
+| 类型检查 / 完整 Lint | 通过 |
+| 正式本地构建 | 通过；207 个静态页面，首页保持动态渲染 |
+| 6 幅循环与详情链接 | 通过 |
+| ArrowRight 焦点保持 | 通过 |
+| 1440×900 | 1 个 H1，无横向溢出 |
+| 390×844 | 无横向溢出；按钮高度大于 44px |
+| 简体 / 繁体 / 英文 | 均为 6 幅且无横向溢出 |
+
+### 发布边界
+
+- 仅本地修改，没有提交、推送、PR、Preview、合并、标签、Release 或部署。
+- 每日轮换只影响首图起点，不改变作品排序、图谱库目录或作品详情 URL。

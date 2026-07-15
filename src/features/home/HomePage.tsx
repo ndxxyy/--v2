@@ -6,18 +6,25 @@ import { ButtonLink, ImageFrame, TextLink } from "@/components/ui";
 import type { Locale } from "@/i18n/config";
 
 import { HOME_COPY } from "./copy";
+import { HeroWorkCarousel } from "./HeroWorkCarousel";
+import { getShanghaiDailyRotationIndex } from "./seasonal";
+import { SeasonalTodayPanel } from "./SeasonalTodayPanel";
 import type { HomePageData } from "./selectors";
 import styles from "./HomePage.module.css";
 
 interface HomePageProps {
   readonly locale: Locale;
   readonly data: HomePageData;
+  readonly initialNow: string;
 }
 
-export function HomePage({ data, locale }: HomePageProps) {
+export function HomePage({ data, initialNow, locale }: HomePageProps) {
   const copy = HOME_COPY[locale];
   const featuredCase = data.featuredCases[0];
-  const compactArtworkLabel = locale !== "en";
+  const initialHeroIndex = getShanghaiDailyRotationIndex(
+    new Date(initialNow),
+    data.heroWorks.length,
+  );
   const stats = [
     { value: data.stats.totalWorks, label: copy.stats.totalWorks },
     { value: data.stats.meridianWorks, label: copy.stats.meridianWorks },
@@ -49,55 +56,13 @@ export function HomePage({ data, locale }: HomePageProps) {
         </div>
 
         <div className={styles.heroWorks} aria-label={copy.catalog.title}>
-          {data.heroWorks.length > 0 ? (
-            data.heroWorks.map((work) => (
-              <Link
-                aria-label={`${copy.hero.viewWork}：${work.title}`}
-                className={styles.heroArtwork}
-                data-work={work.id}
-                href={work.href}
-                key={work.id}
-              >
-                <figure className={styles.heroArtworkFigure}>
-                  <Image
-                    alt={work.image.alt}
-                    className={styles.heroArtworkImage}
-                    height={work.image.height}
-                    priority
-                    sizes="(max-width: 767px) calc(100vw - 36px), (max-width: 1279px) 50vw, 31vw"
-                    src={work.image.src}
-                    unoptimized
-                    width={work.image.width}
-                  />
-                </figure>
-                <div
-                  className={`${styles.artworkPlaque} ${
-                    compactArtworkLabel ? styles.artworkPlaqueVertical : ""
-                  }`}
-                >
-                  <h2
-                    className={`${styles.artworkTitle} ${
-                      compactArtworkLabel && work.id === "work-003"
-                        ? styles.artworkTitleColumns
-                        : ""
-                    }`}
-                  >
-                    {compactArtworkLabel && work.id === "work-003" ? (
-                      <>
-                        <span>{work.title.slice(0, -2)}</span>
-                        <span>{work.title.slice(-2)}</span>
-                      </>
-                    ) : work.title}
-                  </h2>
-                </div>
-              </Link>
-            ))
-          ) : (
-            <div className={styles.heroEmpty} role="note">
-              <h2 className={styles.heroEmptyTitle}>{copy.hero.emptyTitle}</h2>
-              <p className={styles.heroEmptyDescription}>{copy.hero.emptyDescription}</p>
-            </div>
-          )}
+          <SeasonalTodayPanel copy={copy.seasonal} initialNow={initialNow} locale={locale} />
+          <HeroWorkCarousel
+            copy={copy.hero}
+            initialIndex={initialHeroIndex}
+            locale={locale}
+            works={data.heroWorks}
+          />
         </div>
 
         <div className={styles.heroLedger}>
