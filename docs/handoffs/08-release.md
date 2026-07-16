@@ -2,7 +2,11 @@
 
 交接日期：2026-07-16
 
-发布状态：**本地产物已具备部署条件，但尚未推送、未改写远程历史、未执行正式部署。**
+发布状态：**已净化并强制更新远程 `main`，已删除两个旧远程分支，并已正式部署至 Cloudflare Workers。**
+
+线上地址：<https://xiao-zhong-qi-yi-v2.zhongzhaoyuan165.workers.dev/zh-CN>
+
+Cloudflare Version ID：`fc9a1673-87c8-4dd0-94fa-69dffda37a26`
 
 ## 已实现内容
 
@@ -42,12 +46,15 @@
 | `npx opennextjs-cloudflare build` | 通过；生成 Worker 部署包 |
 | Wrangler dry-run | 通过；366 个静态资源，Worker gzip 约 1.10 MiB |
 | Cloudflare 本地预览 | 主要路由 200，未知作品 404，favicon 200，图谱预览 WebP 200 |
+| Cloudflare 正式部署 | 通过；读取 580 个静态资源，上传 212 个新增/变更资源，Worker gzip 1127.05 KiB，启动时间 28 ms |
+| Cloudflare 线上版本 | 已激活 `fc9a1673-87c8-4dd0-94fa-69dffda37a26`；Chrome 已正常打开简体中文首页并读取正确页面标题 |
 
 ## 桌面与手机验证结果
 
 - 前续交接已完成 1440×900 与 390×844 的首页、图谱、授权和联系页复核，没有发现横向滚动或无效联系表单。
 - 图谱大图已验证打开/关闭、点击二次放大、方向键、ESC、焦点返回和单图状态。
 - 本轮在 Cloudflare 本地运行时补充验证了简体首页、经络目录、汤剂详情、404、robots、sitemap、favicon 和公开图片响应。
+- 正式部署后，Chrome 已成功打开 workers.dev 简体中文首页，页面标题为“中医可视化图谱与临证笔记｜小钟岐医”。当前命令行网络环境直连 workers.dev 超时，因此线上逐路由 HTTP 自动化回归未能在命令行侧完成。
 
 ## 仍需提供或人工确认的真实资料
 
@@ -60,7 +67,8 @@
 
 - 浏览器端的右键、拖拽和复制保护不能阻止截图、开发者工具或自动化抓取；它们只提高普通保存成本。
 - Cloudflare CDN/WAF 的热链、频率限制和异常抓取规则未配置，正式部署后再依账户能力设置。
-- 公开 GitHub 仓库历史已经包含受保护备份。本轮的停止跟踪只保护新提交，不会清除旧提交和 GitHub 缓存；在获得明确授权后必须单独改写远程历史。
+- GitHub 普通远程分支已净化，远程只保留 `main`；但 GitHub 管理的隐藏引用 `refs/pull/1/head` 仍指向旧 PR 历史，普通 force-push 无法删除。若需平台级彻底清除，应联系 GitHub Support 清理缓存引用，或在另行确认后重建仓库。
+- 当前使用 workers.dev 临时主地址，尚未绑定自定义域名。
 
 ## 发布前检查清单
 
@@ -68,14 +76,14 @@
 - [x] 公开图谱水印全量验证
 - [x] robots、sitemap、canonical、hreflang、分享信息和 favicon
 - [x] 本地临时产物和受保护备份排除
-- [ ] 在仓库外保留可恢复备份，改写并强制更新 GitHub 上的公开历史
+- [x] 在仓库外保留可恢复备份，改写并强制更新 GitHub 上的公开历史
 - [ ] 确认正式主域名与 Cloudflare 域名状态
 - [ ] 资料所有者完成联系方式、医学文字和最终页面的人工确认
 - [x] 创建清理后的本地发布提交
-- [ ] 清理远程历史并推送，再执行正式 `npm run deploy`
+- [x] 清理远程历史并推送，执行 Cloudflare Workers 正式部署
 
 ## 后续任务注意事项
 
-1. 不要在 GitHub Desktop 中直接提交当前所有文件；必须先完成历史清理和变更范围复核。
-2. 未获得用户明确同意前，不得执行 force-push、删除远程分支/标签或正式部署。
-3. 如使用自定义域名，先以该域名重建 canonical/sitemap 再部署，不要部署后才更换 SEO 主域。
+1. GitHub 普通远程历史已净化；后续仍需处理 GitHub PR 隐藏引用的旧历史残留。
+2. 当前发布地址为 workers.dev；绑定正式自定义域名时，需要同步更新 `NEXT_PUBLIC_SITE_URL`、canonical、sitemap 与 Open Graph 地址后重新构建部署。
+3. 绑定正式域名后，再执行一次桌面端和手机端的全路径线上回归。
